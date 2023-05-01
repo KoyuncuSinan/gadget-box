@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
     {
@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
             min:1,
             max:50,
         },
-        nickname:{
+        username:{
             type: String,
             required:true,
             min: 1,
