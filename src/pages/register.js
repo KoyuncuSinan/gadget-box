@@ -8,29 +8,33 @@ export default function Register(){
         email:"",
         password:"",
     })
-    const [profilePicture, setProfilePicture] = useState("");
+    const [profilePicture,setProfilePicture] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isThereError, setIsThereError] = useState(false);
-
-    const addToFormData = (formData, inputs) => {
-        for(const input in inputs){
-            formData.append(`${input}`, inputs[input]);
-        }
-    }
-
     
+
+    const inputData = new FormData();
+    
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        inputData.append("firstname",userForm.firstname)
+        inputData.append("lastname",userForm.lastname)
+        inputData.append("username",userForm.username)
+        inputData.append("email",userForm.email)
+        inputData.append("password",userForm.password)
+        inputData.append("profilePicture",profilePicture)
         try {
-          addToFormData(inputData, userForm);
-          inputData.append("profilePicture", profilePicture);
-          console.log(inputData); // <-- add this line
-          const res = await fetch("http://localhost:3000/api/register", {
+        console.log(Array.from(inputData.entries()));
+          const res = await fetch("/api/register", {
             method: "POST",
             body: inputData,
           });
           const data = await res.json();
+          console.log(data)
           if (!res.ok) {
             console.log(data.msg);
             setIsThereError(true);
@@ -57,7 +61,7 @@ export default function Register(){
                     value={userForm.firstname}
                     name="firstname"
                     id="firstname"
-                    onChange={(e) => setUserForm({...userForm, [e.target.name]: e.target.value})}
+                    onChange={(e) => setUserForm({...userForm, firstname: e.target.value})}
                 />
             </div>
             <div>
@@ -68,7 +72,7 @@ export default function Register(){
                     value={userForm.lastname}
                     name="lastname"
                     id="lastname"
-                    onChange={(e) => setUserForm({...userForm, [e.target.name]: e.target.value})}
+                    onChange={(e) => setUserForm({...userForm, lastname: e.target.value})}
                 />
             </div>
             <div>
@@ -79,7 +83,7 @@ export default function Register(){
                     value={userForm.username}
                     name="username"
                     id="username"
-                    onChange={(e) => setUserForm({...userForm, [e.target.name]: e.target.value})}
+                    onChange={(e) => setUserForm({...userForm, username: e.target.value})}
                 />
             </div>
             <div>
@@ -90,7 +94,7 @@ export default function Register(){
                     value={userForm.email}
                     name="email"
                     id="email"
-                    onChange={(e) => setUserForm({...userForm, [e.target.name]: e.target.value})}
+                    onChange={(e) => setUserForm({...userForm, email: e.target.value})}
                 />
             </div>
             <div>
@@ -101,11 +105,11 @@ export default function Register(){
                     value={userForm.password}
                     name="password"
                     id="password"
-                    onChange={(e) => setUserForm({...userForm, [e.target.name]: e.target.value})}
+                    onChange={(e) => setUserForm({...userForm, password: e.target.value})}
                 />
             </div>
             <div>
-                <label htmlFor="profilePicture">Profile Picture</label>
+                <label htmlFor="profilePicture">Image</label>
                 <input
                     type="file"
                     required 

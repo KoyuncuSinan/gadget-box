@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         firstname:{
             type: String,
@@ -35,16 +35,16 @@ const UserSchema = new mongoose.Schema(
         },
         profilePicture: {
             type: String,
-            required: true,
+            required:true,
             default: "",
         },
         reviews: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Reviews"
+            ref: "Review"
         }],
         comments: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Comments"
+            ref: "Comment"
         }],
         followings: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -56,10 +56,10 @@ const UserSchema = new mongoose.Schema(
         }],
         games: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Games"
+            ref: "Game"
         }]
     }, {timestamps:true}
 )
 
-const User = mongoose.model("User",UserSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;

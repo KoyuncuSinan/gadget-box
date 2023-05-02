@@ -14,10 +14,10 @@ const reviewSchema = new mongoose.Schema(
             type: Number,
             required:true,
         },
-        comments: ({
+        comments: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
-        }),
+        }],
     }, {timestamps:true}
 )
 
