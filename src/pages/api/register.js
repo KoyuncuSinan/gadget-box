@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import User from "../../models/User.js";
-import { bucket } from "@/middlewares/imageUpload"
+import User from "../../models/User";
 import bcrypt from "bcrypt";
-import { connectDB } from "@/database/db";
-import multer from "multer";
+import { connectDB, closeConnection } from "./lib/db.js";
+import formidable from "formidable"
+import cloudinary from "@/pages/api/lib/middlewares/imageUpload";
 
 export const config = {
   api: {
@@ -11,66 +11,65 @@ export const config = {
   },
 };
 
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits:{
-    fileSize: 10*1024*1024,
-  }
-});
-
-
 export default async function register(req, res) {
-  if (req.method === 'POST') {
-    const db = await connectDB();
-    if (db instanceof Error) {
-      return res.status(500).send({ message: 'Internal server error.' });
-    } else if (db) {
-      try {
-        // Use the multer middleware to handle file uploads
-        upload.single('profilePicture')(req, res, async (err) => {
-          if (err) {
-            console.error(err);
-            return res.status(400).send({ message: 'Error uploading file', error: err });
-          }
-          const { firstname, lastname, username, email, password } = req.body;
-          const file = req.file;
-          if (file.mimetype.startsWith("image/")) {
-            const { originalname, buffer } = file;
-            const timestamp = new Date().getTime();
-            const blob = bucket.file(`${timestamp}_${originalname.replace(/ /g, "_")}`);
-            const blobStream = blob.createWriteStream({
-              resumable: false,
-            });
-            blobStream.on("error", (err) => {
-              console.error(err);
-            });
-            blobStream.on("finish", async () => {
-              const publicUrl = `https://storage.googleapis.com/${bucketName}/${blob.name}`;
-              const salt = bcrypt.genSalt(10)
-              const passwordHash = await bcrypt.hash(password, salt);
-              const user = new User({
-                firstname,
-                lastname,
-                username,
-                email,
-                password: passwordHash,
-                publicUrl,
-              });
-              await user.save();
-              return res.status(200).send({ message: 'A user successfully created' });
-            });
-            blobStream.end(buffer);
-          } else {
-            console.error(err);
-            res.status(400).send({ message: 'Registration failed', error: err });
-          }
-        });
-      } catch (err) {
-        console.error(err);
-        res.status(400).send({ message: 'Registration failed', error: err });
-      }
-    }
-  } else {
-    res.status(405).send({ message: 'Method not allowed' });
+  if (req.method !== 'POST') {
+      return res.status(405).json({message: "Method not allowed."})
   }
+  try{
+    await connectDB();
+  } catch(err){
+    console.error("MongoDB connection error",err)
+    return res.status(500).json({message: "Internal Server Error"})
+  }
+
+  const form = new formidable.IncomingForm({multiples:true})
+
+  form.parse(req, async(err,fields, files) => {
+    if(err){
+      console.error("Formidable Error",err);
+      return res.status(500).json({ message: "Internal Server Error"});
+    }
+
+    const firstname = Array.isArray(fields.firstname) ? fields.firstname[0] : fields.firstname;
+    const lastname = Array.isArray(fields.lastname) ? fields.lastname[0] : fields.lastname;
+    const username = Array.isArray(fields.username) ? fields.username[0] : fields.username;
+    const email = Array.isArray(fields.email) ? fields.email[0] : fields.email;
+    const password = Array.isArray(fields.password) ? fields.password[0] : fields.password;
+
+
+    
+
+    console.log(fields)
+    const profilePicture = Array.isArray(files.profilePicture) ? files.profilePicture[0] : files.profilePicture;
+    console.log(files)
+    if (!profilePicture) {
+      console.error("Profile Picture not found");
+      return res.status(400).json({ message: "Profile Picture is required" });
+  } 
+  
+  try {
+  const pictureUpload = await cloudinary.uploader.upload(profilePicture.filepath,{
+    use_filename: true,
+    unique_filename: true,
+  })
+
+  const publicUrl = cloudinary.url(pictureUpload.public_id)
+  const salt = await bcrypt.genSalt(10)
+  const hashPassword = await bcrypt.hash(password.toString(), salt)
+  const user = await new User({
+    firstname,
+    lastname,
+    username,
+    email,
+    password: hashPassword,
+    profilePicture: publicUrl
+  });
+  await user.save();
+  return res.status(201).json({message: "User created successfully", user});
+  closeConnection()
+} catch (err) {
+  console.error("Error while saving user data", err);
+  return res.status(500).json({message: "Internal Server Error"});
+}
+});
 }

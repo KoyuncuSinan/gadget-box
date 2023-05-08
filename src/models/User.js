@@ -3,39 +3,39 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
     {
         firstname:{
-            type: String,
+            type: String ,
             required:true,
             min: 1,
             max: 50,
         },
         lastname:{
-            type: String,
+           type: String ,
             required:true,
             min:1,
             max:50,
         },
         username:{
-            type: String,
+           type: String ,
             required:true,
             min: 1,
             max: 50,
             unique: true   
         },
         email:{
-            type: String,
+          type: String ,
             required: true,
             max: 50,
             unique: true,
         },
         password: {
-            type: String,
+           type: String ,
             required: true,
             min: 5,
             max: 16,
         },
         profilePicture: {
-            type: String,
-            required:true,
+            type : String,
+            required: true,
             default: "",
         },
         reviews: [{
