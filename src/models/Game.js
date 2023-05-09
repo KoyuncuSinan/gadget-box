@@ -15,7 +15,6 @@ const gameSchema = new mongoose.Schema(
         },
         description:{
             type: String,
-            required: true
         },
         image:{
             type: String,
@@ -31,10 +30,9 @@ const gameSchema = new mongoose.Schema(
         }],
         reviewCount :{
             type: Number,
-            required:true
         }
     }
 )
 
-const Game = mongoose.model("Game",gameSchema);
+const Game = mongoose.models.Game || mongoose.model("Game",gameSchema);
 export default Game; 
