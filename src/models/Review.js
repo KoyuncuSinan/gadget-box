@@ -6,6 +6,10 @@ const reviewSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
+        reviews:{
+            type: String,
+            required: true,
+        },
         game:{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Game"
@@ -24,5 +28,5 @@ const reviewSchema = new mongoose.Schema(
     }, {timestamps:true}
 )
 
-const Review = mongoose.model("Review", reviewSchema);
+const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);
 export default Review;

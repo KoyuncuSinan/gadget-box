@@ -2,6 +2,7 @@
 
 import React,{useState} from "react";
 import Image from "next/image";
+import Link from "next/link";
 export default function PopularThisWeek({games}){
     const gameList = Object.values(games);
     console.log(gameList)
@@ -9,7 +10,10 @@ export default function PopularThisWeek({games}){
     const DisplayGames = gameList.map((game, index) => {
         return(
                 <li key={game._id}>
-                    <Image src={game.image} width={200} height={600} alt="Game's image"/>
+                        <Link href={`/games/${game._id}`}>
+                            <Image src={game.image} width={200} height={600} alt="Game's image"/>
+
+                        </Link>
                     <div className="flex flex-row">
                         <span>{game.reviewCount}</span>
                     </div>

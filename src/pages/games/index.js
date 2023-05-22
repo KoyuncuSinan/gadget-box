@@ -24,7 +24,7 @@ export default function index(){
                 }
                 console.log(data.recentlyReviewed10Games)
                 setRecentlyReviewsGames(data.recentlyReviewed10Games)
-                setRandomGames(data.random20Games)
+                setRandomGames(data.random6Games)
 
             }catch(err){
                 console.error(err);

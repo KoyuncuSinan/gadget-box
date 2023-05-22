@@ -14,7 +14,7 @@ export default async function filteredGames(req,res){
         return res.status(500).json({message: "Internal server error"})
     }
     try{
-        const random20Games = await Game.aggregate([{$sample: {size:20} }])
+        const random6Games = await Game.aggregate([{$sample: {size:6} }])
         const recentlyReviewed10Games = await Game
         .find({ reviews: { $exists: true, $not: { $size: 0 } } }) // Find games that have at least one review
         .populate({ path: 'Review', options: { sort: { createdAt: -1 } }, perDocumentLimit: 1 }) // Populate the reviews field and sort by createdAt in descending order
@@ -23,7 +23,7 @@ export default async function filteredGames(req,res){
     
     console.log(recentlyReviewed10Games);
 
-        return res.status(200).json({random20Games: random20Games, recentlyReviewed10Games: recentlyReviewed10Games});
+        return res.status(200).json({random6Games: random6Games, recentlyReviewed10Games: recentlyReviewed10Games});
 
     } catch(err){
         console.error("No games found", err)
