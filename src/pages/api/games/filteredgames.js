@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { connectDB, closeConnection } from "../lib/db";
 import Game from "@/models/Game";
+import Review from "@/models/Review";
 
 export default async function filteredGames(req,res){
     if(req.method !== "GET"){
@@ -17,7 +18,7 @@ export default async function filteredGames(req,res){
         const random6Games = await Game.aggregate([{$sample: {size:6} }])
         const recentlyReviewed10Games = await Game
         .find({ reviews: { $exists: true, $not: { $size: 0 } } }) // Find games that have at least one review
-        .populate({ path: 'Review', options: { sort: { createdAt: -1 } }, perDocumentLimit: 1 }) // Populate the reviews field and sort by createdAt in descending order
+        .populate({ path: 'reviews', options: { sort: { createdAt: -1 } }, perDocumentLimit: 1 }) // Populate the reviews field and sort by createdAt in descending order
         .sort({ 'reviews.createdAt': -1 }) // Sort the games by the createdAt field of the most recent review
         .limit(10); // Limit the result to ten games
     

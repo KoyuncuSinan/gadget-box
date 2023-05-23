@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-
-import PopularThisWeek from "@/components/games/MaybeInterestedIn";
+import MaybeInterestedIn from '@/components/games/MaybeInterestedIn';
 import React,{useState, useEffect} from "react";
 import JustReviewed from "@/components/games/JustReviewed";
 
@@ -39,7 +38,7 @@ export default function index(){
     return(
         <main>
         <section>
-            <PopularThisWeek games= {randomGames} />
+            <MaybeInterestedIn games= {randomGames} />
         </section>
         <section>
             <JustReviewed games = {recentlyReviewsGames}/>
