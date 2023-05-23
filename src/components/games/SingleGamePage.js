@@ -1,6 +1,20 @@
 "use client";
+import { getToken } from "next-auth/jwt";
 import Image from "next/image"
+import Link from "next/link";
+import { useState,useEffect } from "react";
+import { useSession } from "next-auth/react"
+
 export default function SingleGamePage({game}){
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { data: session, status } = useSession()
+    
+    useEffect(() => {
+        if(status === "authenticated"){
+            setIsLoggedIn(true);
+        }
+    }, [status])
+
     if(!game || !game.reviews){
         return null;
     }
@@ -22,17 +36,26 @@ export default function SingleGamePage({game}){
     
     return(
     <main>
-    <Image src={game.image} width={800} height={500}></Image>
-    <div className="grid grid-cols-3">
+    <Image src={game.image} width={800} height={500} className="brightness-75"></Image>
+    <div className="grid grid-cols-4 mt-2 w-[95%] mx-auto">
         <section className="col-span-1"> 
-            <Image src={game.image} width={200} height={400} alt="Game's image"></Image>
-            <span>{game.reviewCount}</span>
-            <span>{game.website}</span>
+            <Image src={game.image} width={200} height={600} alt="Game's image" className="h-[10rem] object-cover"></Image>
+            <span className="text-center block">{game.reviewCount}</span>
+            <Link href={game.website}>Website</Link>
         </section>
-        <section className="col-span-2">
-            <h2>{game.name}</h2>
-            <span>{game.releaseDate}</span>
-            <p>{game.description}</p>
+        <section className="col-span-2 w-[85%] mx-auto">
+            <h2 className="text-3xl font-extrabold">{game.name}</h2>
+            <span className="text-xs font-thin ">{game.releaseDate}</span>
+            <p className="font-light text-ellipsis">{game.description}</p>
+        </section>
+        <section className="col-span-1">
+            {isLoggedIn ? <button>Send a review</button> : 
+            <Link href="/auth/login">
+                <button>
+                    Sign in to rate or review
+                </button>
+            
+            </Link>}
         </section>
     </div>
     <section>
