@@ -8,6 +8,10 @@ const nextConfig = {
         port: "",
         pathname: "/media/**"
       },
+      {
+        protocol:"http",
+        hostname:"res.cloudinary.com"
+      }
     ],
   },
   reactStrictMode: true,

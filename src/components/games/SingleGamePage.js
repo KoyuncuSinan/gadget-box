@@ -1,13 +1,17 @@
 "use client";
-import { getToken } from "next-auth/jwt";
 import Image from "next/image"
 import Link from "next/link";
 import { useState,useEffect } from "react";
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/router";
+
 
 export default function SingleGamePage({game}){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { data: session, status } = useSession()
+
+    const router = useRouter();
+    const {id} = router.query;
     
     useEffect(() => {
         if(status === "authenticated"){
@@ -23,10 +27,10 @@ export default function SingleGamePage({game}){
         return(
                 <li key={review._id}>
                      <div className="flex flex-row">
-                        <Image src={review.owner.profilePicture} alt="User's picture"></Image>
+                        <Image src={review.owner.profilePicture} width={200} height={200} alt="User's picture"></Image>
                         <span>{`Review by ${review.owner.username} ${review.rating}`}</span>
                      </div>
-                     <p>{review.review}</p>
+                     <p>{review.reviews}</p>
                      <span>{review.likes}</span>
                 </li>
 
@@ -49,7 +53,11 @@ export default function SingleGamePage({game}){
             <p className="font-light text-ellipsis">{game.description}</p>
         </section>
         <section className="col-span-1">
-            {isLoggedIn ? <button>Send a review</button> : 
+            {isLoggedIn ? 
+            <Link href={`/games/${id}/review/create`}>
+                <button>Send a review</button> 
+            </Link>
+                : 
             <Link href="/auth/login">
                 <button>
                     Sign in to rate or review

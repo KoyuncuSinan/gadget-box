@@ -77,8 +77,8 @@ export default async function register(req, res) {
     profilePicture: publicUrl
   });
   await user.save();
-  return res.status(201).json({message: "User created successfully", user});
   closeConnection()
+  return res.status(201).json({message: "User created successfully", user});
 } catch (err) {
   console.error("Error while saving user data", err);
   return res.status(500).json({message: "Internal Server Error"});
