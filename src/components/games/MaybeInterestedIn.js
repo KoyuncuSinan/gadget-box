@@ -1,8 +1,9 @@
 "use client";
-
 import React,{useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 export default function MaybeInterestedIn({games}){
     const gameList = Object.values(games);
     console.log(gameList)
@@ -11,23 +12,23 @@ export default function MaybeInterestedIn({games}){
         return(
                 <li key={game._id}>
                         <Link href={`/games/${game._id}`}>
-                            <Image src={game.image} width={200} height={600} alt="Game's image"/>
-
+                            <Image src={game.image} width={800} height={800} alt="Game's image" className="h-[5rem] w-[7rem] object-cover"/>
                         </Link>
                     <div className="flex flex-row">
-                        <span>{game.reviewCount}</span>
+                        <VisibilityIcon className="w-[1rem]"/>
+                        <span className="ml-1">{game.reviewCount}</span>
                     </div>
                 </li>
         )
     })
     return(
         <>
-        <div className="flex flex-row justify-between">
-        <h3>You may be interested in</h3>
-        <span>MORE</span>
-        <hr className="text-white"></hr>
+        <div className="flex flex-row justify-between font-light">
+        <h3 className>You may be interested in</h3>
+        <Link href={`/games`}>MORE</Link>
         </div>
-        <ul className="grid grid-cols-4">
+        <hr className="mb-2"></hr>
+        <ul className="grid grid-cols-3 gap-2">
             {DisplayGames}
         </ul>
 
