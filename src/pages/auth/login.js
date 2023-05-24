@@ -26,25 +26,27 @@ export default function Login(){
     }
 
 return(
-    <form onSubmit={submitHandler}>
-        <label htmlFor="email">Email</label>
+    <form onSubmit={submitHandler} className="flex flex-col text-gray-400 bg-stone-900">
+        <label htmlFor="email" className="w-[80%] mx-auto mb-1">Email</label>
         <input 
         type="text"
         name = "email"
+        className="w-[80%] mx-auto mb-1"
         id="email"
         value={email}
         onChange = {(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="w-[80%] mx-auto mb-1">Password</label>
         <input 
         type="password"
         name = "password"
+        className="w-[80%] mx-auto mb-1"
         id="password"
         value={password}
         onChange = {(e) => setPassword(e.target.value)}
         />
-        <button>Login</button>
-        <button onClick={() => signOut()}>Logout</button>
+        <button className="text-end mx-auto w-[80%]">Login</button>
+        <button onClick={() => signOut()} className="mb-3">Logout</button>
     </form>
 )
 }
