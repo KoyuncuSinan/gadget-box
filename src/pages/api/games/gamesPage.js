@@ -16,7 +16,16 @@ export default async function gamesPage(req,res){
     }
 
     try{
-        const popular16Games = await Game.aggregate([{$sample: {size:16}}])
+        const popular16Games = await Game.aggregate([
+            {$sample: {size:16}},
+            {
+                $project:{
+                    _id: 1,
+                    image: 1
+                }
+            }
+        ])
+
         const justReviewed12Games = await Game
         .find({reviews: {$exists: true, $not: {$size:0} }})
         .populate({path: "reviews", options: {sort:{createdAt: -1 }}, perDocumentLimit: 1})
@@ -24,13 +33,22 @@ export default async function gamesPage(req,res){
         .limit(12);
 
         const getReviews = await Review.find()
-        .populate("owner").limit(6);
+        .populate({
+            path: "owner",
+            select:"profilePicture username"
+        })
+        .populate({
+            path: "game",
+            select: "name releaseDate image"
+        })
+        .limit(6);
 
         const popularReviewers = await User.aggregate([
             {
                 $project:{
                     username:1,
                     reviewCount: {$size: "$reviews"},
+                    profilePicture: 1
                 },
             },
             {

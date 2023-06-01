@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import MaybeInterestedIn from '@/components/games/MaybeInterestedIn';
+import MaybeInterestedIn from '@/components/homepage/MaybeInterestedIn';
 import React,{useState, useEffect} from "react";
-import JustReviewed from "@/components/games/JustReviewed";
+import JustReviewed from "@/components/homepage/JustReviewed";
 import Link from 'next/link';
 import background from "../../public/red-dead-redemption-2.jpg"
 import Header from '@/components/navbar/Header';

@@ -23,7 +23,8 @@ const reviewSchema = new mongoose.Schema(
             ref: "Comment"
         }],
         likes: {
-            type: Number
+            type: Number,
+            default: 0
         }
     }, {timestamps:true}
 )

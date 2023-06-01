@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import SingleGamePage from "@/components/games/SingleGamePage";
+import SingleGamePage from "@/components/SingleGamePage";
 import { useRouter } from "next/router";
 
 export default function GameSingle(){

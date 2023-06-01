@@ -20,7 +20,7 @@ export default async function filteredGames(req,res){
         .find({ reviews: { $exists: true, $not: { $size: 0 } } }) // Find games that have at least one review
         .populate({ path: 'reviews', options: { sort: { createdAt: -1 } }, perDocumentLimit: 1 }) // Populate the reviews field and sort by createdAt in descending order
         .sort({ 'reviews.createdAt': -1 }) // Sort the games by the createdAt field of the most recent review
-        .limit(10); // Limit the result to ten games
+        .limit(8); // Limit the result to ten games
     
     console.log(recentlyReviewed10Games);
 

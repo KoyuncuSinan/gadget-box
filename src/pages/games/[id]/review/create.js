@@ -43,7 +43,8 @@ export default function CreateReview(){
     }, [status, session])
     console.log(userEmailRef.current)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         const userEmail = userEmailRef.current;
         try{
             const res = await fetch("/api/review/create",{

@@ -27,6 +27,9 @@ export default async function userPage() {
       .limit(3);
     const getUserGames = await User.findById(userId).populate("games");
 
+    const followersCount = await User.countDocuments({_id: userId})
+    .populate("followers")
+    .countDocuments();
     const getUserPopularReviews = await User.findById(userId)
     .populate({
         path: "reviews",
@@ -36,6 +39,13 @@ export default async function userPage() {
     .sort({"reviews.likes": -1})
     .limit(2);
 
+    const getUserFollowings = await User.findById(userId).populate({
+        path: "followings",
+        select: "_id profilePicture"
+    })
+
+    res.status(200).json({getUserRecentReviews:getUserRecentReviews, getUserGames: getUserGames, getUserPopularReviews: getUserPopularReviews, getUserFollowings:getUserFollowings, followersCount: followersCount})
+    
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal server error" });

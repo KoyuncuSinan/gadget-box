@@ -23,9 +23,9 @@ export default function MaybeInterestedIn({games}){
     })
     return(
         <>
-        <div className="flex flex-row justify-between font-light">
+        <div className="flex flex-row justify-between font-light items-center">
         <h3 className>You may be interested in</h3>
-        <Link href={`/games`}>MORE</Link>
+        <Link href={`/games`} className="font-thin text-xs">MORE</Link>
         </div>
         <hr className="mb-2"></hr>
         <ul className="grid grid-cols-3 gap-2">
