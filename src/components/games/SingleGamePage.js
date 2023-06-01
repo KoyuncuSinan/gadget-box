@@ -50,7 +50,7 @@ export default function SingleGamePage({game}){
         <section className="col-span-2 w-[85%] mx-auto">
             <h2 className="text-3xl font-extrabold">{game.name}</h2>
             <span className="text-xs font-thin ">{game.releaseDate}</span>
-            <p className="font-light text-ellipsis">{game.description}</p>
+            <p className="font-light break-normal">{game.description}</p>
         </section>
         <section className="col-span-1">
             {isLoggedIn ? 

@@ -1,6 +1,7 @@
 "use client"
 import PersonIcon from '@mui/icons-material/Person'
 import GamesIcon from '@mui/icons-material/Games';
+import Link from 'next/link';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useSession } from 'next-auth/react';
@@ -19,17 +20,17 @@ export default function MobileMenu(){
         <ul className='bg-stone-900 text-gray-400 font-bold drop-shadow-2xl'>
             <li className='flex flex-row justify-start w-[90%] mx-auto mb-2'>
                 <PersonIcon />
-                <span className='ml-3'>CREATE ACCOUNT</span>
+                <Link href={"/auth/register"} className='ml-3'>CREATE ACCOUNT</Link>
             </li>
             <hr className='w-[90%] mx-auto mb-2'></hr>
             <li className='flex flex-row justify-start w-[90%] mx-auto mb-2'>
                 <GamesIcon />
-                <span className='ml-3'>GAMES</span>
+                <Link href={"/games"} className='ml-3'>GAMES</Link>
             </li>
             <hr className='w-[90%] mx-auto mb-2 '></hr>
             <li className='flex flex-row justify-start w-[90%] mx-auto mb-2'>
                 <ReviewsIcon />
-                <span className='ml-3'>REVIEWS</span>
+                <Link href={"/reviews"} className='ml-3'>REVIEWS</Link>
             </li>
             {isLoggedIn && 
             <>
