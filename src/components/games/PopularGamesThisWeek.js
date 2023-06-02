@@ -1,4 +1,3 @@
-"use client"
 
 import React,{useState} from "react"
 import Link from "next/link"
@@ -20,7 +19,7 @@ export default function PopularGamesThisWeek({games}){
                 <li className="">
                     <Link href={`/games/${game._id}`}>
                         <Image src={game.image} width={1000} height={1000} alt="Game's image" 
-                        className="w-[7rem] h-[9rem] object-cover mx-auto rounded-md">
+                        className="w-[7rem] h-[9rem] object-cover mx-auto rounded-md" priority>
 
                         </Image>
                     </Link>

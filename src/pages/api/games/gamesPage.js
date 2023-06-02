@@ -28,8 +28,8 @@ export default async function gamesPage(req,res){
 
         const justReviewed12Games = await Game
         .find({reviews: {$exists: true, $not: {$size:0} }})
-        .populate({path: "reviews", options: {sort:{createdAt: -1 }}, perDocumentLimit: 1})
         .sort({"reviews.createdAt" : -1})
+        .populate({path: "reviews", options: {sort:{createdAt: -1 }}, perDocumentLimit: 1})
         .limit(12);
 
         const getReviews = await Review.find()

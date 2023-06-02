@@ -48,11 +48,13 @@ const userSchema = new mongoose.Schema(
         }],
         followings: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            default: 0
         }],
         followers: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            default: 0
         }],
         games: [{
             type: mongoose.Schema.Types.ObjectId,

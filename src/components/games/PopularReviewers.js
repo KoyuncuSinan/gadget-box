@@ -1,4 +1,3 @@
-"use client"
 
 import React,{useState} from "react"
 import Link from "next/link"
@@ -19,10 +18,10 @@ export default function PopularReviewers({reviewers}){
         const isLastElement = index === reviewerList.length -1;
 
         return(
-                <li className="flex flex-row items-center">
+                <li className="flex flex-row items-center mb-3">
                     <Link href={`/user/${reviewer._id}`}>
                         <Image src={reviewer.profilePicture} width={1000} height={1000} alt="Reviewer's image" 
-                        className="w-[3rem] h-[3rem] object-cover mx-auto rounded-full">
+                        className="w-[3rem] h-[3rem] object-cover mx-auto rounded-full" priority>
                         </Image>
                     </Link>
                     <div className="ml-3">

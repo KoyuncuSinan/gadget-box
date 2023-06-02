@@ -1,5 +1,3 @@
-"use client"
-
 import React,{useState} from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -20,7 +18,7 @@ export default function RecentlyReviewed({games}){
                 <li className="">
                     <Link href={`/games/${game._id}`}>
                         <Image src={game.image} width={1000} height={1000} alt="Game's image" 
-                        className="w-[5rem] h-[7rem] object-cover mx-auto rounded-md">
+                        className="w-[5rem] h-[7rem] object-cover mx-auto rounded-md" priority>
 
                         </Image>
                     </Link>

@@ -10,6 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import Login from "@/pages/auth/login";
 import MobileMenu from "./MobileMenu";
 import Logo from "../../../public/icon.png"
+import Link from "next/link";
 
 
 export default function Header(){
@@ -51,10 +52,13 @@ export default function Header(){
     },[status])
 
     return(
-        <header>
+        <header className="relative">
             {isMobile && 
             <>
-            <nav className="flex flex-box justify-end items-center bg-stone-900 h-[3rem] text-gray-400">
+            <nav className="flex flex-box justify-end items-center bg-stone-900 h-[3rem] text-gray-400 relative">
+            <Link href={"/"} className="absolute left-3 w-[3rem] h-[3rem] object-cover">
+                <Image src={Logo} width={800} height ={200} alt="Website's logo" ></Image>
+            </Link>
                 {isLoginMenuClicked ? <CloseIcon onClick= {() => setIsLoginMenuClicked(false)} className="mr-2" /> : <LoginIcon id="login" onClick={handleClick} className="mr-2"/>}
                 {isMenuClicked ? <CloseIcon onClick= {() => setIsMenuClicked(false)} className="mr-2"/> : <MenuIcon id="menu" onClick={handleClick} className="mr-2"/>}
                 {isSearchClicked ? <CloseIcon onClick= {() => setIsSearchClicked(false)} className="mr-2"/> : <SearchIcon id="search" onClick={handleClick} className="mr-2"/>}
