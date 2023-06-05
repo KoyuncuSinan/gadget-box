@@ -17,7 +17,7 @@ export default function MobileMenu(){
     },[status])
     
     return(
-        <ul className='bg-stone-900 text-gray-400 font-bold drop-shadow-2xl'>
+        <ul className='bg-stone-950 text-gray-400 font-bold drop-shadow-2xl'>
             <li className='flex flex-row justify-start w-[90%] mx-auto mb-2'>
                 <PersonIcon />
                 <Link href={"/auth/register"} className='ml-3'>CREATE ACCOUNT</Link>

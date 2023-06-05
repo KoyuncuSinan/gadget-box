@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
 
@@ -12,7 +11,7 @@ export default function UserInformation({infos}){
     return(
         <> 
             {isMobile && (
-            <section className="w-[90%] mx-auto">
+            <section className="w-[90%] mx-auto relative">
                 <div className="flex flex-row mt-10 items-center justify-center mr-20">
                     <Image src={infos.profilePicture} width={500} height={500} 
                     className="w-[5rem] h-[5rem] rounded-full object-cover border-gray-100 border-[1px] " 

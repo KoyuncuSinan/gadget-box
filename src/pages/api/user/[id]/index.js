@@ -1,6 +1,6 @@
 import User from "@/models/User";
 import mongoose from "mongoose";
-import { connectDB, closeConnection } from "../lib/db";
+import { connectDB, closeConnection } from "../../lib/db";
 import Review from "@/models/Review";
 import Game from "@/models/Game";
 
@@ -23,7 +23,7 @@ export default async function(req,res) {
     }
     console.log("Received userId:", userId);
 
-    const userInformation = await User.findById(userId).select("firstname lastname username profilePicture reviews")
+    const userInformation = await User.findById(userId).select("firstname lastname username profilePicture reviews followings followers").populate("followings followers")
     const getUserRecentReviews = await User.findById(userId).select("username")
       .populate({
         path: "reviews",

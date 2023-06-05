@@ -15,19 +15,26 @@ export default async function(req,res){
         return res.status(500).json({ message: "Internal server error" });
       }
     
-      const gameId = req.query.id;
-      console.log("Received gameId:", gameId);
+     try{
+       const gameId = req.query.id;
+        console.log("Received gameId:", gameId);
+      
+        const singleGame = await Game.findById(gameId).populate({
+          path: "reviews",
+          populate: {
+            path: "owner",
+          },
+        });
+      
+        if (!singleGame) {
+          return res.status(404).json({ message: "Couldn't find the game" });
+        }
+      
+        return res.status(200).json(singleGame);
     
-      const singleGame = await Game.findById(gameId).populate({
-        path: "reviews",
-        populate: {
-          path: "owner",
-        },
-      });
-    
-      if (!singleGame) {
-        return res.status(404).json({ message: "Couldn't find the game" });
-      }
-    
-      return res.status(200).json(singleGame);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
 }
+      

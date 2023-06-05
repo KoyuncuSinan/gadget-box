@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import SingleGamePage from "@/components/SingleGamePage";
 import { useRouter } from "next/router";
+import Header from "@/components/navbar/Header";
 
 export default function GameSingle(){
     const [data, setData] = useState("");
@@ -37,7 +38,11 @@ export default function GameSingle(){
 
     return(
         <>
+            <Header />
+            <main className="">
             <SingleGamePage game={data}/>
+
+            </main>
         </>
     )
 

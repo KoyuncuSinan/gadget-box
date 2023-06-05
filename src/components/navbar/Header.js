@@ -55,7 +55,7 @@ export default function Header(){
         <header className="relative">
             {isMobile && 
             <>
-            <nav className="flex flex-box justify-end items-center bg-stone-900 h-[3rem] text-gray-400 relative">
+            <nav className="flex flex-box justify-end items-center bg-stone-950 h-[3rem] text-gray-400 relative">
             <Link href={"/"} className="absolute left-3 w-[3rem] h-[3rem] object-cover">
                 <Image src={Logo} width={800} height ={200} alt="Website's logo" ></Image>
             </Link>

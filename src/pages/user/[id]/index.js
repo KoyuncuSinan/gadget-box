@@ -7,6 +7,8 @@ import UserRecentGames from "@/components/user/UserRecentGames";
 import UserRecentReviews from "@/components/user/UserRecentReviews";
 import UserPopularReviews from "@/components/user/UserPopularReviews";
 import UserFollowings from "@/components/user/UserFollowings";
+import FollowButton from "@/components/FollowButton";
+
 
 export default  function Id(){
     const [data, setData] = useState("");
@@ -15,6 +17,7 @@ export default  function Id(){
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const {id} = router.query;
+
 
     useEffect(() => {
         const getData = async () => {
@@ -51,6 +54,7 @@ export default  function Id(){
         }
     },[id])
 
+    
 return(
     <>
     <Header />
@@ -62,7 +66,10 @@ return(
             <p>{errorMessage}</p>
             ) : (
                 <>
-                <UserInformation infos ={data.userInformation}/>
+                <div>
+                    <UserInformation infos ={data.userInformation}/>
+                    <FollowButton user = {data.userInformation} />
+                </div>
                 <UserNumbers data = {data}/>
                 <UserRecentGames data={data}/>
                 <UserRecentReviews data={data} />

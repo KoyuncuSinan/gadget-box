@@ -66,7 +66,9 @@ export default async function createReview(req,res){
         }catch(err){
             console.error("Error while creating review",err)
             return res.status(500).json({message: "Internal Server Error"});
-        }
+        }finally {
+            closeConnection();
+          }
 
     })
 }
