@@ -40,7 +40,6 @@ export default function FollowButton({user}){
     console.log(id)
    
         const handleClick = async (e) => {
-            e.preventDefault()
             try{
                 const res = await fetch(`/api/util/follow`,{
                     method:"POST",
@@ -61,6 +60,7 @@ export default function FollowButton({user}){
                 setState(data);
                 console.log(state);
                 setIsLoading(false);
+                router.reload()
 
             }catch(err){
                 console.error(err)
@@ -76,7 +76,7 @@ export default function FollowButton({user}){
     return(
         <div>
         {state ? (isFollowed 
-        ? (<span></span>) 
+        ? (<span><UnfollowButton/></span>) 
         :  ((<button onClick={handleClick} className="bg-orange-500 text-white">Follow</button>))) : <span></span>}
         </div>
     )

@@ -24,7 +24,7 @@ export default function UserNumbers({data}){
                 <Divider orientation="vertical" className="mx-auto border-slate-700"/>
 
                 <div className="flex flex-col items-center ">
-                    <span className="text-white font-bold text-xl">{data.followersCount}</span>
+                    <span className="text-white font-bold text-xl">{data.userInformation.followers.length}</span>
                     <span className="text-slate-500 font-light text-sm">FOLLOWERS</span>
                 </div>
                 <Divider orientation="vertical" className="mx-auto border-slate-700"/>

@@ -18,7 +18,7 @@ export default function UserFollowings({data}){
             <li>
             <Link href={`/user/${following._id}`}>
                 <Image src={following.profilePicture} width={500} height={500} alt="Following's profile picture" 
-                className="w-[6rem] h-[6rem] rounded-full"></Image>
+                className="w-[3rem] h-[3rem] rounded-full object-cover"></Image>
 
             </Link>
             </li>

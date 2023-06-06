@@ -1,20 +1,22 @@
 import React,{useState, useEffect} from "react";
 import { useRouter } from "next/router";
 
-export default function UnfollowButton({user}){
+export default function UnfollowButton(){
 
     const router = useRouter();
     const {id} = router.query
-
+    const [errorMessage, setErrorMessage] = useState("")
+    const [isThereError, setIsThereError] = useState(false); 
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleClick = async (e) => {
-        e.preventDefault()
         try{
             const res = await fetch(`/api/util/unfollow`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
-                }
+                },
+                body:JSON.stringify({id:id})
             })
             const data = await res.json();
             if(!data){
@@ -22,9 +24,9 @@ export default function UnfollowButton({user}){
                 setErrorMessage(data.message);
                 setIsLoading(false)
             }
-            setState(data);
-            console.log(state);
             setIsLoading(false);
+            router.reload()
+
 
         }catch(err){
             console.error(err)
@@ -37,7 +39,7 @@ export default function UnfollowButton({user}){
     }
 
     return(
-        <button onClick={handleClick} className="bg-orange-500 text-white">Follow</button>
+        <button onClick={handleClick} className="bg-orange-500 text-white">Unfollow</button>
     )
 }
 
