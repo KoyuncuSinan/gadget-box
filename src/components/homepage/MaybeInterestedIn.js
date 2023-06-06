@@ -1,4 +1,3 @@
-"use client";
 import React,{useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,7 @@ export default function MaybeInterestedIn({games}){
         return(
                 <li key={game._id}>
                         <Link href={`/games/${game._id}`}>
-                            <Image src={game.image} width={800} height={800} alt="Game's image" className="h-[5rem] w-[7rem] object-cover"/>
+                            <Image src={game.image} width={500} height={500} alt="Game's image" className="h-[5rem] w-[7rem] object-cover" loading="lazy"/>
                         </Link>
                     <div className="flex flex-row">
                         <VisibilityIcon className="w-[1rem]"/>

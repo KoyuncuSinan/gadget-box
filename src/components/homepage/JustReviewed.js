@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
@@ -10,7 +9,7 @@ export default function JustReviewed({games}){
             
                 <li key={game._id}>
                     <Link href={`/games/${game._id}`}>
-                            <Image src={game.image} width={1920} height={1080} alt="Game's image" className="h-[3rem] w-[7rem] object-cover"/>
+                            <Image src={game.image} width={500} height={500} alt="Game's image" className="h-[3rem] w-[7rem] object-cover" loading="lazy"/>
                         </Link>
                 </li>
            

@@ -53,10 +53,10 @@ export default function index(){
               <section>
                 <div className="image-container">
                   <div className="fade-out-image">
-                    <Image src={background} width={1920} height={1080} alt="Red Dead Redemption 2 Background" className="object-cover h-auto w-full" />
+                    <Image src={background} width={500} height={500} alt="Red Dead Redemption 2 Background" className="object-cover h-auto w-full" priority/>
                   </div>
                 <div className="flex flex-row justify-center items-center text-white font-extrabold absolute left-0 right-0 bottom-2 mx-auto">
-                  <Image src={logo} width={200} height={200} alt="Gadget Box logo" className="w-[4rem] mr-2" />
+                  <Image src={logo} width={200} height={200} alt="Gadget Box logo" className="w-[4rem] mr-2" priority />
                   <h1 className="text-3xl">Gadget Box</h1>
                 </div>
                 </div>

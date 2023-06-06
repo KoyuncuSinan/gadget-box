@@ -1,6 +1,7 @@
 import Review from "@/models/Review";
 import User from "@/models/User";
 import mongoose from "mongoose";
+import Game from "@/models/Game";
 import { connectDB } from "../lib/db";
 
 export default async function allReviews(req,res){

@@ -19,7 +19,6 @@ export default async function allGames(req,res){
         .sort({ "reviews.length": 1 })
         .select("image")
         .limit(72);
-        console.log(games)
         const gamesCount = await Game.countDocuments()
         return res.status(200).json({games:games, gamesCount: gamesCount})
     }catch(err){

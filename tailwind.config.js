@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans:[`var(--font-mulish)`],
+        mono:[`var(--font-mono)`],
+      },
       screens: {
         'xs': '480px' ,
          

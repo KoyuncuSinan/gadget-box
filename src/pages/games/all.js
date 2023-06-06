@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from "react";
-import AllReviews from "@/components/review/AllReviews";
 import Header from "@/components/navbar/Header";
-
+import AllGames from "@/components/games/AllGames";
 
 export default function(){
     const [data, setData] = useState()
@@ -12,20 +11,20 @@ export default function(){
     useEffect(() => {
         const getData = async () => {
             try{
-                const res = await fetch(`api/review/allReviews`,{
+                const res = await fetch(`/api/games/allGames`,{
                     method:"GET",
                     headers:{
                         "Content-Type":"application/json"
                     }
                 })
                 if(!res.ok){
-                         setIsThereError(true);
-                        setErrorMessage(data.message);
+                        setIsThereError(true);
+                        setErrorMessage(res.message);
                         setIsLoading(false)
                 }
-                const data = await res.json()
-                setData(data);
-                console.log(data)
+                const responseData = await res.json()
+                setData(responseData);
+                console.log(responseData)
                 setIsLoading(false);
             }catch(err){
                 console.error(err)
@@ -47,7 +46,7 @@ export default function(){
                 <p>{errorMessage}</p>
                 ) : (
                     <>
-                    <AllReviews reviews={data} />
+                    <AllGames games={data} />
                     </>
             )}
             </section>
