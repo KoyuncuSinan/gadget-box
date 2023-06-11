@@ -38,17 +38,32 @@ export default function PopularReviewers({reviewers}){
 
     return(
         <>
-         {isMobile && 
+         {isMobile ?
+         (
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center">
         <h3 className>POPULAR REVIEWERS</h3>
         <Link href={`/games`} className="font-thin text-xs">MORE</Link>
         </div>
         <hr className="mb-2"></hr>
-        <ul className="mb-2">
+        <ul className="mb-2 grid grid-cols-5">
             {popularReviewers}
         </ul>
         </>
+         )
+         :
+         (
+            <> 
+        <div className="flex flex-row justify-between font-light text-gray-400 items-center">
+        <h3 className>POPULAR REVIEWERS</h3>
+        <Link href={`/games`} className="font-thin text-xs">MORE</Link>
+        </div>
+        <hr className="mb-2"></hr>
+        <ul className="mb-2 grid grid-cols-5">
+            {popularReviewers}
+        </ul>
+        </>
+         )
         }
         </>
     )

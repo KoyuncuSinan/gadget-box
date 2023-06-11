@@ -10,18 +10,47 @@ import logo from "../../public/icon.png"
 import useBetterMediaQuery from '@/components/util/useBetterMediaQuery';
 
 
+export const getServerSideProps = async () => {
+  try{
+    const res = await fetch("http://localhost:3000/api/games/filteredgames",{
+      method: "GET",
+      headers:{
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await res.json();
+    return{
+      props:{
+        data
+      },
+    };
+  }catch(err){
+    console.error(err);
+    return {
+      props: {
+        data: null,
+        errorMessage: "An error occurred while retrieving data."
+      },
+    };
+  }
+}
 
 
-export default function Index({data}){
-    const [errorMessage, setErrorMessage] = useState("")
-    const [isThereError, setIsThereError] = useState(false); 
+export default function Index({data, errorMessage}){
+
+    const [isThereError, setIsThereError] = useState(!data); 
 
     const isMobile = useBetterMediaQuery('(max-width: 899px)');
 
+    useEffect(() => {
+      setIsThereError(!data);
+    },[data])
+
     return (
         <div className='relative'>
+        
         <Header/>
-        {isMobile ?
+        {isThereError ? <span>{errorMessage}</span> : isMobile ?
         (
           <main className="mx-auto umd:w-[50%]">
               <>
@@ -96,17 +125,4 @@ export default function Index({data}){
       );
     
 }
-export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/games/filteredgames",{
-    method: "GET",
-    headers:{
-      "Content-Type": "application/json"
-    }
-  });
-  const data = await res.json();
-  return{
-    props:{
-      data
-    }
-  }
-}
+
