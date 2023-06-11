@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image"
 import Link from "next/link";
 import { useState,useEffect } from "react";
@@ -43,7 +42,7 @@ export default function SingleGamePage({game}){
         return(
                 <li className="" key={review._id}>
                     <div className="grid grid-cols-3">
-                        <div className="col-span-2">
+                        <div className="col-span-3">
                             <div className="flex flex-row mt-3 items-center mb-2">
                                 <Image src={review.owner.profilePicture} width={300} height={300} className="w-[2rem] h-[2rem] rounded-full object-cover" priority></Image>
                                 <Link href={`/user/${review.owner._id}`}>
@@ -51,6 +50,7 @@ export default function SingleGamePage({game}){
                                 </Link>
                             </div>
                             <span className="text-gray-400">{review.rating}/10 Rating</span>
+                            <span className="text-gray-400 text-sm ml-10">Played at {review.createdAt.slice(0,10)}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -88,7 +88,7 @@ export default function SingleGamePage({game}){
             </Link>
                 : 
             <Link href="/auth/login">
-                <button>
+                <button className="text-slate-300 text-sm">
                     Sign in to rate or review
                 </button>
             
@@ -111,8 +111,9 @@ export default function SingleGamePage({game}){
     </div>
     <section>
     <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-        <h3 className>POPULAR REVIEWS THIS WEEK</h3>
+        <h3 className>REVIEWS</h3>
         </div>
+        <hr className="mb-2"></hr>
         <ul>
             {displayReviews}
         </ul>

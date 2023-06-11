@@ -18,7 +18,8 @@ module.exports = {
        
         'md': '768px',
         
-  
+        "umd": "900px",
+
         'lg': '1024px',
       
   
