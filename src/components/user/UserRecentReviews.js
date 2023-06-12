@@ -3,9 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import useBetterMediaQuery from "../util/useBetterMediaQuery";
 
 export default function UserRecentReviews({data}){
-    const isMobile = useMediaQuery({query:"(max-width:899px"})
+    const isMobile = useBetterMediaQuery("(max-width: 899px)");
     const router = useRouter();
     const {id} = router.query;
 
@@ -19,7 +20,7 @@ export default function UserRecentReviews({data}){
         return(
                 <li className="" key={review._id}>
                     <div className="grid grid-cols-3">
-                        <Image src={review.game.image} width={500} height={500} className="col-span-1 w-[5rem] h-[7rem] object-cover" priority></Image>
+                        <Image src={review.game.image} width={500} height={500} className="col-span-1 w-[85%] h-[10rem] object-cover rounded-md" priority></Image>
                         <div className="col-span-2">
                             <div className="flex flex-row items-center">
                             <Link href={`/games/${review.game._id}`}>
@@ -46,7 +47,7 @@ export default function UserRecentReviews({data}){
     })
     return(
         <>
-         {isMobile && 
+         {isMobile ? (
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 mt-16 items-center mt">
         <h3 className>RECENT REVIEWS</h3>
@@ -58,6 +59,21 @@ export default function UserRecentReviews({data}){
         </ul>
         
         </>
+         )
+         :
+         (
+            <> 
+        <div className="flex flex-row justify-between font-light text-gray-400 mt-16 items-center mt">
+        <h3 className>RECENT REVIEWS</h3>
+        <Link href={`/user/${id}/reviews`} className="font-thin text-xs">MORE</Link>
+        </div>
+        <hr className="mb-2"></hr>
+        <ul className="">
+            {popularReviews}
+        </ul>
+        
+        </>
+         )
         }
         
 
