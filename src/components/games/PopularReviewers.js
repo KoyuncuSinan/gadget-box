@@ -2,11 +2,11 @@
 import React,{useState} from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useMediaQuery } from "react-responsive";
+import useBetterMediaQuery from "../util/useBetterMediaQuery";
 
 
 export default function PopularReviewers({reviewers}){
-    const isMobile = useMediaQuery({query:"(max-width:899px"})
+    const isMobile = useBetterMediaQuery("(max-width: 899px)");
 
 
     if (!reviewers) {
@@ -21,14 +21,17 @@ export default function PopularReviewers({reviewers}){
                 <li className="flex flex-row items-center mb-3">
                     <Link href={`/user/${reviewer._id}`}>
                         <Image src={reviewer.profilePicture} width={1000} height={1000} alt="Reviewer's image" 
-                        className="w-[3rem] h-[3rem] object-cover mx-auto rounded-full" priority>
+                        className="w-[3rem] h-[3rem] object-cover mx-auto rounded-full hover:scale-105" priority>
                         </Image>
                     </Link>
                     <div className="ml-3">
                         <Link href={`/user/${reviewer._id}`}>
-                            <h3 className="text-white font-semibold">{reviewer.username}</h3>
+                            <h3 className="text-white font-semibold hover:text-orange-300">{reviewer.username}</h3>
                         </Link>
-                        <span className="text-slate-400 font-extralight">{reviewer.reviewCount} reviews</span>
+                        <div className="text-slate-400 font-extralight">
+                            <span>{reviewer.reviewCount}</span>
+                            <span className="mx-1">reviews</span>
+                        </div>
                     </div>
                     {!isLastElement && <hr className="mb-2 mt-2 border-1 border-slate-600"></hr> }
 

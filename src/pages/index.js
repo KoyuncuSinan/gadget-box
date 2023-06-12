@@ -106,7 +106,7 @@ export default function Index({data, errorMessage}){
                 </h2>
                 <div className='w-full text-center'>
                 <Link href={"/auth/register"}>
-                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%]'>GET STARTED - IT'S FREE</button>
+                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%] hover:brightness-125'>GET STARTED - IT'S FREE</button>
 
                 </Link>
                 </div>

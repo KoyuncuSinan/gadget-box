@@ -2,44 +2,46 @@ import React,{useState, useEffect} from "react";
 import AllReviews from "@/components/review/AllReviews";
 import Header from "@/components/navbar/Header";
 
+export const getServerSideProps = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/review/allReviews", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      return {
+        props: {
+          data,
+        },
+      };
+    } catch (err) {
+      console.error(err);
+      return {
+        props: {
+          data: null,
+          errorMessage: "An error occurred while retrieving data.",
+        },
+      };
+    }
+  }; 
 
-export default function(){
-    const [data, setData] = useState()
-    const [errorMessage, setErrorMessage] = useState("")
+
+export default function({data, errorMessage}){
+
     const [isThereError, setIsThereError] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const getData = async () => {
-            try{
-                const res = await fetch(`api/review/allReviews`,{
-                    method:"GET",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                })
-                if(!res.ok){
-                         setIsThereError(true);
-                        setErrorMessage(data.message);
-                        setIsLoading(false)
-                }
-                const data = await res.json()
-                setData(data);
-                console.log(data)
-                setIsLoading(false);
-            }catch(err){
-                console.error(err)
-                setIsThereError(true);
-                setErrorMessage("Internal server error");
-            }
-        }
-        getData()
-    },[])
+        setIsThereError(!data);
+        setIsLoading(false);
+      }, [data]);
 
     return(
         <>
         <Header />
-        <main className="w-[90%] mx-auto">
+        <main className="w-[90%] umd:w-[60%] mx-auto">
             <section>
             {isLoading ? (
             <p>Loading...</p>

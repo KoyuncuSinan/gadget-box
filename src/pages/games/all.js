@@ -2,43 +2,47 @@ import React,{useState, useEffect} from "react";
 import Header from "@/components/navbar/Header";
 import AllGames from "@/components/games/AllGames";
 
-export default function(){
-    const [data, setData] = useState()
-    const [errorMessage, setErrorMessage] = useState("")
+
+export const getServerSideProps = async () => {
+    try {
+        const res = await fetch("http://localhost:3000/api/games/allGames", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        return {
+          props: {
+            data,
+          },
+        };
+      } catch (err) {
+        console.error(err);
+        return {
+          props: {
+            data: null,
+            errorMessage: "An error occurred while retrieving data.",
+          },
+        };
+      }
+    };
+
+
+export default function({data,errorMessage}){
+
     const [isThereError, setIsThereError] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const getData = async () => {
-            try{
-                const res = await fetch(`/api/games/allGames`,{
-                    method:"GET",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                })
-                if(!res.ok){
-                        setIsThereError(true);
-                        setErrorMessage(res.message);
-                        setIsLoading(false)
-                }
-                const responseData = await res.json()
-                setData(responseData);
-                console.log(responseData)
-                setIsLoading(false);
-            }catch(err){
-                console.error(err)
-                setIsThereError(true);
-                setErrorMessage("Internal server error");
-            }
-        }
-        getData()
-    },[])
+    setIsThereError(!data);
+    setIsLoading(false);
+  }, [data]);
 
     return(
         <>
         <Header />
-        <main className="w-[90%] mx-auto">
+        <main className="w-[90%] umd:w-[60%] mx-auto">
             <section>
             {isLoading ? (
             <p>Loading...</p>

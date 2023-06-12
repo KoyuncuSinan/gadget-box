@@ -37,7 +37,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
               <div className="col-span-2">
                 <div className="flex flex-row items-center  justify-between relative">
                   <Link href={`/games/${review.game._id}`}>
-                    <h2 className="text-white font-bold text-2xl sm:text-3xl">
+                    <h2 className="text-white font-bold text-2xl sm:text-3xl ">
                       {review.game.name}
                     </h2>
                   </Link>
@@ -53,7 +53,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
                     className="w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem]  rounded-full object-cover"
                   ></Image>
                   <Link href={`/user/${review.owner._id}`}>
-                    <span className="ml-2 text-gray-400 font-bold text-lg xs:text-xl">
+                    <span className="ml-2 text-gray-400 font-bold text-lg xs:text-xl ">
                       {review.owner.username}
                     </span>
                   </Link>
@@ -75,16 +75,16 @@ export default function PopularReviewsThisWeek({ reviews }) {
         ) : (
           <>
             <div className="grid grid-cols-4">
-                <figure className="col-span-1 w-[60%]">
+                <figure className="col-span-1 w-[50%]">
                     <Image src={review.game.image} width={800} height={800} alt="Reviewed game's image"
-                    className="h-[7rem] object-cover rounded-md"                    
+                    className="h-[7rem] object-cover rounded-md xl:h-[8rem] 2xl:h-[9rem]"                    
                     ></Image>
                 </figure>
 
-                <div className="col-span-3 -ml-10">
+                <div className="col-span-3 -ml-10 lg:-ml-12 xl:-ml-20 2xl:-ml-24 3xl:-ml-28">
                     <div className="flex flex-row items-center  justify-between">
                     <Link href={`/games/${review.game._id}`}>
-                    <h2 className="text-white font-bold text-2xl tracking-wide">
+                    <h2 className="text-white font-bold text-2xl tracking-wide hover:text-orange-300">
                       {review.game.name}
                     </h2>
                   </Link>
@@ -95,7 +95,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
                         <Image src={review.owner.profilePicture} width={400} height={400} alt="Reviewed game's owner image" 
                         className="w-[2rem] h-[2rem] rounded-full object-cover"></Image>
                         <Link href={`/user/${review.owner._id}`}>
-                    <span className="ml-2 text-gray-400 font-bold text-sm">
+                    <span className="ml-2 text-gray-400 font-bold text-sm hover:text-gray-100">
                       {review.owner.username}
                     </span>
                     </Link>
@@ -137,7 +137,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
             <h3 className>POPULAR REVIEWS THIS WEEK</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>
           </div>

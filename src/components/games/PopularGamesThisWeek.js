@@ -20,7 +20,7 @@ export default function PopularGamesThisWeek({ games }) {
             width={600}
             height={600}
             alt="Game's image"
-            className="h-[80%] w-[100%] object-cover rounded-md
+            className="h-[80%] w-[100%] object-cover rounded-md hover:brightness-125
             umd:h-[12rem]
             lg:h-[14rem]"
             priority
@@ -47,7 +47,7 @@ export default function PopularGamesThisWeek({ games }) {
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 items-center">
             <h3 className>POPULAR GAMES THIS WEEK</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games/all`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>
           </div>

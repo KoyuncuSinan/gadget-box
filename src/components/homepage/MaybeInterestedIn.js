@@ -19,7 +19,7 @@ export default function MaybeInterestedIn({ games }) {
             width={500}
             height={500}
             alt="Game's image"
-            className="h-[80%] w-[100%] object-cover rounded-md
+            className="h-[80%] w-[100%] object-cover rounded-md hover:brightness-110
             umd:h-[10rem] lg:h-[12rem]
             xl:h-[15rem]
             "
@@ -39,7 +39,7 @@ export default function MaybeInterestedIn({ games }) {
         <>
           <div className="flex flex-row justify-between font-light items-center uppercase">
             <h3 className>You may be interested in</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games`} className="font-thin text-xs ">
               MORE
             </Link>
           </div>
@@ -55,7 +55,7 @@ export default function MaybeInterestedIn({ games }) {
         <> 
         <div className="flex flex-row justify-between font-light items-center uppercase">
             <h3 className>You may be interested in</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>
           </div>

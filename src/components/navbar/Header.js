@@ -86,11 +86,11 @@ export default function Header(){
                 xl:text-base
 
                 ">
-                    <Link href={"/auth/login"} className="mr-2 xl:mr-3 2xl:mr-5">SIGN IN</Link>
-                    <Link href={"/auth/register"} className="mr-2 xl:mr-3 2xl:mr-5">CREATE ACCOUNT</Link>
-                    <Link href={"/games"} className="mr-2 xl:mr-3 2xl:mr-5">GAMES</Link>
-                    <Link href={"/reviews"} className="mr-2 xl:mr-3 2xl:mr-5">REVIEWS</Link>
-                    {status === "authenticated" && <Link href={`/user/${userId}`} className="">YOUR PROFILE</Link>}
+                    <Link href={"/auth/login"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">SIGN IN</Link>
+                    <Link href={"/auth/register"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">CREATE ACCOUNT</Link>
+                    <Link href={"/games"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">GAMES</Link>
+                    <Link href={"/reviews"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">REVIEWS</Link>
+                    {status === "authenticated" && <Link href={`/user/${userId}`} className="hover:text-white">YOUR PROFILE</Link>}
                     <div>Searchbar</div>
                 </div>
                 </nav>

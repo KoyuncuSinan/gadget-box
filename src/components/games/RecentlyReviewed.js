@@ -20,13 +20,12 @@ export default function RecentlyReviewed({ games }) {
             width={1000}
             height={1000}
             alt="Game's image"
-            className="h-[7rem] w-[100%] object-cover rounded-md
+            className="h-[7rem] w-[100%] object-cover rounded-md hover:brightness-125
             xs:h-[8rem]
             sm:h-[9rem]
             md:h-[10rem]
             umd:h-[12rem]
             lg:h-[14rem]"
-            priority
           ></Image>
         </Link>
       </li>
@@ -51,7 +50,7 @@ export default function RecentlyReviewed({ games }) {
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
             <h3 className>RECENTLY REVIEWED</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>
           </div>

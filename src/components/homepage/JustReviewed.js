@@ -18,7 +18,7 @@ export default function JustReviewed({ games }) {
             width={500}
             height={500}
             alt="Game's image"
-            className="h-[80%] w-[100%] object-cover rounded-md
+            className="h-[80%] w-[100%] object-cover rounded-md hover:brightness-110
             umd:h-[12rem]
             lg:h-[14rem] 
             "
@@ -47,7 +47,7 @@ export default function JustReviewed({ games }) {
         <> 
         <div className="flex flex-row justify-between font-light items-center uppercase">
             <h3 className="font-light">Just Reviewed</h3>
-            <Link href={`/games`} className="font-thin text-xs">
+            <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>
           </div>
