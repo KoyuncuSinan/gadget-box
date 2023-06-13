@@ -1,74 +1,69 @@
-import React,{useState, useEffect} from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/navbar/Header";
-import { useMediaQuery } from "react-responsive";
 import UserAllReview from "@/components/user/UserAllReview";
+import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
 
-export default function Games(){
+export const getServerSideProps = async ({ query }) => {
+  const { id } = query;
 
-    const [data, setData] = useState("");
-    const [errorMessage, setErrorMessage] = useState("")
-    const [isThereError, setIsThereError] = useState(false); 
-    const router = useRouter();
-    const [isLoading, setIsLoading] = useState(true);
-    const {id} = router.query;
+  try {
+    const res = await fetch(`http://localhost:3000/api/user/${id}/review`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      props: {
+        data: null,
+        errorMessage: "An error occurred while retrieving data.",
+      },
+    };
+  }
+};
 
-    const isMobile = useMediaQuery({query: "(max-width: 899px)"})
+export default function Games({data, errorMessage}) {
+  const [isThereError, setIsThereError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const getData = async () => {
-            try{
-                const res = await fetch(`/api/user/${id}/review`,{
-                    method:"GET",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                })
-                const data = await res.json();
-                if(!data){
-                    setIsThereError(true);
-                    setErrorMessage(data.message);
-                    setIsLoading(false)
-                }else{
+  const isMobile = useBetterMediaQuery("(max-width: 899px)");
 
-                    setData(data);
-                    console.log(data);
-                    setIsLoading(false);
-                }
+  useEffect(() => {
+    setIsThereError(!data);
+    setIsLoading(false);
+  }, [data]);
 
-            }catch(err){
-                console.error(err)
-                setIsThereError(true);
-                setErrorMessage("Internal server error");
-            }finally{
-                
-                setIsLoading(false)
-            }
-        }
-        if(id){
-            getData()
-        }
-    },[id])
+  return (
+    <>
+      <Header />
 
-
-
-    return(
-        <>
-        <Header />
-        <main className="w-[90%] mx-auto">
-            <section>
-            {isLoading ? (
+      {isLoading ? (
         <p>Loading...</p>
-        ) : isThereError ? (
+      ) : isThereError ? (
         <p>{errorMessage}</p>
-        ) : (
-            <>
+      ) : isMobile ? (
+        <main className="w-[90%] mx-auto">
+          <section>
+            {" "}
             <UserAllReview data={data} />
-            </>
-    )}
-                
-            </section>
+          </section>
         </main>
+      ) : (
+        <main className="w-[60%] mx-auto">
+          <section>
+            {" "}
+            <UserAllReview data={data} />
+          </section>
+        </main>
+      )}
     </>
-    )
+  );
 }

@@ -19,7 +19,7 @@ export default function UserFollowings({data}){
             <li>
             <Link href={`/user/${following._id}`}>
                 <Image src={following.profilePicture} width={500} height={500} alt="Following's profile picture" 
-                className="w-[3rem] h-[3rem] rounded-full object-cover"></Image>
+                className="w-[3rem] h-[3rem] rounded-full object-cover hover:scale-105"></Image>
 
             </Link>
             </li>
@@ -31,7 +31,7 @@ export default function UserFollowings({data}){
 
          {isMobile ? (
         <> 
-        <div className="flex flex-row justify-between font-light text-gray-400 mt-16 items-center mt">
+        <div className="flex flex-row justify-between font-light text-gray-400 mt-10 items-center mt">
         <h3 className>FOLLOWING</h3>
         <Link href={`/user/${id}/following`} className="font-thin text-xs">{followingList.length}</Link>
         </div>
@@ -46,12 +46,12 @@ export default function UserFollowings({data}){
         :
         (
             <> 
-        <div className="flex flex-row justify-between font-light text-gray-400 mt-16 items-center mt">
+        <div className="flex flex-row justify-between font-light text-gray-400 mt-10 items-center mt">
         <h3 className>FOLLOWING</h3>
-        <Link href={`/user/${id}/following`} className="font-thin text-xs">{followingList.length}</Link>
+        <span className="font-thin text-xs">{followingList.length}</span>
         </div>
         <hr className="mb-2"></hr>
-        <ul className="grid grid-cols-6">
+        <ul className="grid grid-cols-10">
             {displayFollowings}
         </ul>
         

@@ -14,7 +14,7 @@ export default function UserRecentGames({data}){
         <li className="">
                     <Link href={`/games/${game._id}`}>
                         <Image src={game.image} width={1000} height={1000} alt="Game's image" 
-                        className="w-full h-full object-cover mx-auto rounded-md" priority>
+                        className="w-full h-full object-cover mx-auto rounded-md hover:brightness-110" priority>
                         </Image>
                     </Link>
                 </li>
@@ -40,9 +40,9 @@ export default function UserRecentGames({data}){
             :
             (
             <> 
-                    <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-10">
+                    <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-5">
                     <h3 className>RECENT GAMES</h3>
-                    <Link href={`/user/${id}/games`} className="font-thin text-xs">ALL</Link>
+                    <Link href={`/user/${id}/games`} className="font-thin text-xs hover:text-white">ALL</Link>
                     </div>
                     <hr className="mb-2"></hr>
                     <ul className="grid grid-cols-4 gap-2">

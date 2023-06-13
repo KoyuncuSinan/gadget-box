@@ -8,9 +8,8 @@ export default function UserNumbers({data}){
 
     return(
         <>
-        {isMobile &&
-        (
-            <section className="mx-auto mt-3">
+        
+            <section className="mx-auto mt-5">
             <div className="grid grid-cols-4">
                 <div className="flex flex-col items-center">
                     <span className="text-white font-bold text-xl">{data.getUserGames.games.length}</span>
@@ -33,8 +32,6 @@ export default function UserNumbers({data}){
                 </div>
             </div>
         </section>
-
-        )}
     </>
     )
 }

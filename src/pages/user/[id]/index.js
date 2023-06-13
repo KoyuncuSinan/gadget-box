@@ -7,6 +7,7 @@ import UserRecentReviews from "@/components/user/UserRecentReviews";
 import UserPopularReviews from "@/components/user/UserPopularReviews";
 import UserFollowings from "@/components/user/UserFollowings";
 import FollowButton from "@/components/FollowButton";
+import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
 
 export const getServerSideProps = async ({query}) => {
     const {id} = query;    
@@ -41,6 +42,7 @@ export default function Id({data, errorMessage}){
   
     const [isThereError, setIsThereError] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
+    const isMobile = useBetterMediaQuery("(max-width: 899px)");
 
 
     useEffect(() => {
@@ -52,14 +54,14 @@ export default function Id({data, errorMessage}){
 return(
     <>
     <Header />
-    <main className="w-[90%] mx-auto">
-        <section>
+   
         {isLoading ? (
         <p>Loading...</p>
             ) : isThereError ? (
             <p>{errorMessage}</p>
-            ) : (
-                <>
+            ) : isMobile ? (
+                <main className="w-[90%] mx-auto">
+                <section>
                 <div>
                     <UserInformation infos ={data.userInformation}/>
                     <FollowButton user = {data.userInformation} />
@@ -69,11 +71,25 @@ return(
                 <UserRecentReviews data={data} />
                 <UserPopularReviews data={data} />
                 <UserFollowings data= {data} />
-
-                </>
-        )}
-        </section>
-    </main>
+                     </section>
+                </main>
+        )
+        :
+        <main className="w-[60%] mx-auto">
+                <section>
+                <div>
+                    <UserInformation infos ={data.userInformation}/>
+                    <FollowButton user = {data.userInformation} />
+                </div>
+                <UserNumbers data = {data}/>
+                <UserRecentGames data={data}/>
+                <UserRecentReviews data={data} />
+                <UserPopularReviews data={data} />
+                <UserFollowings data= {data} />
+                     </section>
+                </main>
+        }
+        
 </>
 )
 

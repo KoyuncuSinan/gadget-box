@@ -16,7 +16,8 @@ export default function UserAllGames({data}){
         return(
             <li>
                 <Link href={`/games/${game._id}`}>
-                    <Image src={game.image} height={600} width={600} alt="Game's image" className="h-[8rem] w-[6rem] object-cover rounded-md"></Image>
+                    <Image src={game.image} height={600} width={600} alt="Game's image" className="h-[8rem] sm:h-[9rem] md:h-[10rem] umd:h-[12rem] hover:brightness-110 
+                    w-[100%] object-cover rounded-md"></Image>
                 </Link>
             </li>
         )
@@ -24,23 +25,21 @@ export default function UserAllGames({data}){
 
       return(
         <>
-            {isMobile &&
-        <> 
+           
+
         <div className="flex flex-row font-bold text-white items-center mt-5">
-        <Image src={data.userGames.profilePicture} width={500} height={500} className="w-[3rem] h-[3rem] rounded-full object-cover" alt="User's profile picture"></Image>
-            <span className="ml-3">{data.userGames.username}</span>
+            <Image src={data.userGames.profilePicture} width={500} height={500} className="w-[3rem] h-[3rem] rounded-full object-cover" alt="User's profile picture"></Image>
+            <Link href={`/user/${id}`}>
+                <span className="ml-3  hover:text-orange-300">{data.userGames.username}</span>
+            </Link> 
         </div>
         <div className="flex flex-row justify-between font-light text-white mt-10 items-center mt">
         <h3 className>PLAYED</h3>
         </div>
         <hr className="mb-2"></hr>
-        <ul className="grid grid-cols-4 gap-2">
+        <ul className="grid grid-cols-4 umd:grid-cols-5 gap-2">
             {displayList}
         </ul>
-        
-        </>
-        }
-
         </>
       )
 }
