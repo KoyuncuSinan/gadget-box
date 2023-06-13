@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/navbar/Header";
 
-export default function Login(){
+export default function NavLogin(){
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -28,8 +28,7 @@ export default function Login(){
 
 return(
     <>
-    <Header />
-    <form onSubmit={submitHandler} className="flex flex-col text-gray-400 bg-stone-900 mt-8 umd:w-[20%] mx-auto">
+    <form onSubmit={submitHandler} className="flex flex-col text-gray-400 bg-stone-900 my-2">
         <label htmlFor="email" className="w-[80%] mx-auto mb-1">Email</label>
         <input 
         type="text"
@@ -53,6 +52,8 @@ return(
         <button onClick={() => signOut()} >Logout</button> 
         :  
         <button>Login</button>}
+       
+
         </div>
        
     </form>

@@ -22,7 +22,6 @@ export default function JustReviewed({ games }) {
             umd:h-[12rem]
             lg:h-[14rem] 
             "
-            loading="lazy"
           />
         </Link>
       </li>

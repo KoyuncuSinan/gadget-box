@@ -23,7 +23,6 @@ export default function MaybeInterestedIn({ games }) {
             umd:h-[10rem] lg:h-[12rem]
             xl:h-[15rem]
             "
-            loading="lazy"
           />
         </Link>
         <div className="flex flex-row">

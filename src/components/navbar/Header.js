@@ -4,14 +4,13 @@ import { useSession } from "next-auth/react"
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
-import { useMediaQuery } from "react-responsive";
-import Login from "@/pages/auth/login";
+import NavLogin from "../auth/NavLogin";
 import MobileMenu from "./MobileMenu";
 import Logo from "../../../public/icon.png"
 import Link from "next/link";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
+import Searchbar from "../util/Searchbar";
 
 
 export default function Header(){
@@ -65,7 +64,7 @@ export default function Header(){
                 {isSearchClicked ? <CloseIcon onClick= {() => setIsSearchClicked(false)} className="mr-2"/> : <SearchIcon id="search" onClick={handleClick} className="mr-2"/>}
             </nav>
             <div>
-                {isLoginMenuClicked && <span className="font-bold drop-shadow-2xl"><Login /></span>}
+                {isLoginMenuClicked && <span className="font-bold drop-shadow-2xl"><NavLogin /></span>}
                 {isMenuClicked && <MobileMenu /> }
                 {isSearchClicked && <MobileSearchbar />}
             </div>
@@ -73,25 +72,26 @@ export default function Header(){
             }
 
             {isMobile === false && <>
-                <nav className="w-[60%] grid grid-cols-4 mx-auto relative text-white items-center
+                <nav className="w-[60%] grid grid-cols-3 mx-auto relative text-white items-center
                 ">
                 <Link href={"/"} className="w-[3rem] h-[3rem] object-cover col-span-1 flex flex-row items-center">
                     <Image src={Logo} width={500} height ={500} alt="Website's logo" ></Image>
-                    <div className="text-xl font-bold">
+                    <div className="text-base font-bold">
                     <span className="ml-1">Gadget</span>
                     <span className="ml-1">Box</span>
                     </div>
                 </Link>
-                <div className="flex flex-row col-span-3 ml-5 justify-end font-normal text-xs text-gray-300
+                <div className="flex flex-row col-span-2 ml-5 font-normal text-xs text-gray-300
                 xl:text-base
-
+                items-center
+                justify-end
                 ">
-                    <Link href={"/auth/login"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">SIGN IN</Link>
-                    <Link href={"/auth/register"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">CREATE ACCOUNT</Link>
-                    <Link href={"/games"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">GAMES</Link>
-                    <Link href={"/reviews"} className="mr-2 xl:mr-3 2xl:mr-5 hover:text-white">REVIEWS</Link>
+                    <Link href={"/auth/login"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">SIGN IN</Link>
+                    <Link href={"/auth/register"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">CREATE ACCOUNT</Link>
+                    <Link href={"/games"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">GAMES</Link>
+                    <Link href={"/reviews"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">REVIEWS</Link>
                     {status === "authenticated" && <Link href={`/user/${userId}`} className="hover:text-white">YOUR PROFILE</Link>}
-                    <div>Searchbar</div>
+                    <div className=" w-[20%] "><Searchbar /></div>
                 </div>
                 </nav>
 
