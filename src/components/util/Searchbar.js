@@ -77,6 +77,7 @@ export default function Searchbar() {
                 {filteredData.slice(0, 15).map((value, key) => (
                   <Link href={`/games/${value.id}`} key={value.id} target="_blank" className="flex flex-col hover:bg-gray-500 rounded-md p-1">
                     {value.name}
+                    <hr className="border-1 border-gray-200"></hr>
                   </Link>
                 ))}
               </div>

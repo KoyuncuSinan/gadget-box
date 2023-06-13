@@ -46,7 +46,7 @@ export default function Index({data, errorMessage}){
     },[data])
 
     return (
-        <div className=''>
+        <div className='relative'>
         <Header />
         {isThereError ? <span>{errorMessage}</span> : isMobile ?
         (
