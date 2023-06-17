@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useState,useEffect } from "react";
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router";
-import { useMediaQuery } from "react-responsive";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import LanguageIcon from '@mui/icons-material/Language';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useBetterMediaQuery from "./util/useBetterMediaQuery";
+import ReviewStar from "./util/ReviewStar";
 
 
 
@@ -51,8 +51,10 @@ export default function SingleGamePage({game}){
                                 <span className="ml-2 text-gray-400 font-bold text-lg hover:text-orange-300">{review.owner.username}</span>
                                 </Link>
                             </div>
-                            <span className="text-gray-400">{review.rating}/10 Rating</span>
+                            <div className="flex">
+                            <ReviewStar rating={review.rating}/>
                             <span className="text-gray-400 text-sm ml-10">Played at {review.createdAt.slice(0,10)}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -181,7 +183,6 @@ export default function SingleGamePage({game}){
     </section>
     </div>
     </>
-
     }
     </main>
 

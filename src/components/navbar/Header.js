@@ -12,6 +12,7 @@ import Link from "next/link";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
 import Searchbar from "../util/Searchbar";
 import YourProfile from "../util/YourProfile";
+import {signOut} from "next-auth/react"
 
 
 
@@ -88,7 +89,11 @@ export default function Header(){
                 items-center
                 justify-end
                 ">
+                    {status === "authenticated" ? 
+                    <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><button onClick={() => signOut()} >SIGN OUT</button></li>
+                    :
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/auth/login"} >SIGN IN</Link></li>
+                    }
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/auth/register"}>CREATE ACCOUNT</Link></li>
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/games"}>GAMES</Link></li>
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/reviews"}>REVIEWS</Link></li>

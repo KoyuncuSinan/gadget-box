@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useMediaQuery } from "react-responsive";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
+import ReviewStar from "../util/ReviewStar";
 
 export default function AllReviews({ reviews }) {
   const isMobile = useBetterMediaQuery("(max-width: 899px)");
@@ -57,7 +57,7 @@ export default function AllReviews({ reviews }) {
                     Played at {review.createdAt.slice(0, 10)}
                   </span>
                 </div>
-                <span className="text-gray-400">{review.rating}/10 Rating</span>
+                <ReviewStar rating={review.rating}/>
               </div>
             </div>
             <div className="mb-3">
@@ -111,7 +111,7 @@ export default function AllReviews({ reviews }) {
                     Played at {review.createdAt.slice(0, 10)}
                   </span>
                 </div>
-                <span className="text-gray-400">{review.rating}/10 Rating</span>
+                <ReviewStar rating={review.rating}/>
                 <div className="mb-3">
                   <p className="mt-3 text-gray-400">{review.reviews}</p>
                 </div>

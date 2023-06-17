@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Select from "react-select"
 import Link from "next/link";
+import Header from "@/components/navbar/Header";
 
 const options = [
     {value: 1, label:"1"},
@@ -74,23 +75,31 @@ export default function CreateReview(){
 
     return(
     <>
-        {isLoggedIn ? <form onSubmit={handleSubmit}>
+    <Header />
+        {isLoggedIn ? <form onSubmit={handleSubmit} className="text-white w-[80%] umd:w-[60%] mx-auto mt-8">
+            <span className="flex justify-center font-medium text-lg mx-auto w-full">Share a review</span>
+            <div className="flex flex-col mt-4">
             <label htmlFor="review">Your Review</label>
             <textarea 
                 name="review"
                 id="review"
                 required
-                className="text-black"
+                className="text-black h-[100px] md:h-[200px] rounded-md"
                 value={form.review}
                 onChange = {(e) => setForm({...form, review: e.target.value})}
             />
+            </div>
+            <div className="flex flex-col">
             <label>Your Rating</label>
             <Select options={options} 
                 onChange={(selectedOption) => setForm({ ...form, rating: selectedOption.value })}
                 defaultValue = {form.rating}
                 className="text-black"
             />
-                <button type="submit">Submit</button>
+            </div>
+            <div className="mt-4 flex justify-end ">
+                <button className="bg-orange-700 text-white p-2 rounded-md" type="submit">Submit</button>
+            </div>
         </form>:
         <div>You need to login to see this page</div>}
     </>

@@ -35,11 +35,11 @@ export default function Register(){
             body: inputData,
           });
           const data = await res.json();
-          console.log(data)
+          console.log(data.message)
           if (!res.ok) {
-            console.log(data.msg);
+            console.log(data.message);
             setIsThereError(true);
-            setErrorMessage(data.msg);
+            setErrorMessage(data.message);
           } else {
             console.log(data.msg);
           }
@@ -55,6 +55,8 @@ export default function Register(){
     return(
         <>
         <Header />
+        <h3 className="flex justify-center font-medium text-lg text-white mt-10">Register</h3>
+        {isThereError ? <p className="text-white font-bold text-xl text-center my-2 p-1 bg-red-600 w-[40%] umd:w-[20%] mx-auto rounded-md">{errorMessage}</p> : null}
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-[80%] relative mx-auto sm:w-[75%] md:w-[70%] umd:w-[20%] mt-5 text-gray-400">
             <div className="flex flex-col mb-2">
                 <label htmlFor="firstname">Firstname</label>
@@ -64,7 +66,7 @@ export default function Register(){
                     value={userForm.firstname}
                     name="firstname"
                     id="firstname"
-                    className="h-[2rem]"
+                    className="h-[2rem] rounded-md"
                     onChange={(e) => setUserForm({...userForm, firstname: e.target.value})}
                 />
             </div>
@@ -75,7 +77,7 @@ export default function Register(){
                     required 
                     value={userForm.lastname}
                     name="lastname"
-                    className="h-[2rem]"
+                    className="h-[2rem] rounded-md"
                     id="lastname"
                     onChange={(e) => setUserForm({...userForm, lastname: e.target.value})}
                 />
@@ -88,7 +90,7 @@ export default function Register(){
                     value={userForm.username}
                     name="username"
                     id="username"
-                    className="h-[2rem]"
+                    className="h-[2rem] rounded-md"
                     onChange={(e) => setUserForm({...userForm, username: e.target.value})}
                 />
             </div>
@@ -99,7 +101,7 @@ export default function Register(){
                     required 
                     value={userForm.email}
                     name="email"
-                    className="h-[2rem]"
+                    className="h-[2rem] rounded-md"
                     id="email"
                     onChange={(e) => setUserForm({...userForm, email: e.target.value})}
                 />
@@ -108,7 +110,7 @@ export default function Register(){
                 <label htmlFor="password">Password</label>
                 <input
                     type="password"
-                    className="h-[2rem]"
+                    className="h-[2rem] rounded-md"
                     required 
                     value={userForm.password}
                     name="password"
@@ -121,13 +123,13 @@ export default function Register(){
                 <input
                     type="file"
                     required 
-                    className="h-[2rem]"
-                    name="profilePicture"
+                    className="h-[2rem] text-gray-400"
+                    name="profilePicture rounded-md"
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
             </div>
-            <button type="submit" className="bg-white p-2 rounded-md text-black shadow-2xl hover:text-white hover:bg-black absolute right-2 mt-3">Register</button>
+            <button type="submit" className="bg-orange-700 p-2 rounded-md text-white shadow-2xl hover:text-white hover:bg-black absolute right-2 mt-3">Register</button>
         </form>
         </>
     )

@@ -23,7 +23,9 @@ body {
 
 
 #__next {
-  flex-grow: 1;
+  flex-grow: 0;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 footer {
@@ -31,13 +33,6 @@ footer {
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
     display: flex;
   flex-direction: column;
     background-color: rgb(28,25,23);
@@ -70,4 +65,11 @@ input{
 
 .image-container {
   position: relative;
+}
+textarea {
+  resize: none;
+  font: inherit;
+}
+input {
+  font: inherit;
 }

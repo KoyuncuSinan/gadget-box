@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function Footer(){
     return (
-        <footer className='w-full bg-gray-700 text-white py-4'>
+        <footer className='w-full bg-stone-950 text-white py-4 mt-auto'>
           <div className='container mx-auto flex justify-between items-center h-full'>
             <span>© 2023 Gadget Box, Inc. All rights reserved.</span>
             <div className='flex space-x-4'>

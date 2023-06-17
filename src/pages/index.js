@@ -7,7 +7,7 @@ import background from "../../public/red-dead-redemption-2.jpg"
 import Header from '@/components/navbar/Header';
 import logo from "../../public/icon.png"
 import useBetterMediaQuery from '@/components/util/useBetterMediaQuery';
-
+import Footer from '@/components/util/Footer';
 
 export const getServerSideProps = async () => {
   try{
@@ -46,7 +46,7 @@ export default function Index({data, errorMessage}){
     },[data])
 
     return (
-        <div className='relative'>
+        <div className='flex flex-col min-h-screen'>
         <Header />
         {isThereError ? <span>{errorMessage}</span> : isMobile ?
         (
@@ -55,7 +55,7 @@ export default function Index({data, errorMessage}){
               <section key="mobile-section">
                 <div className="image-container">
                   <div className="fade-out-image">
-                    <Image src={background} width={0} height={0} sizes="(max-width: 899px) 100vw"  priority alt="Red Dead Redemption 2 Background" className="object-cover h-auto w-full"/>
+                    <Image src={background} width={800} height={800} sizes="(max-width: 899px) 100vw"  priority alt="Red Dead Redemption 2 Background" className="object-cover h-auto w-full"/>
                   </div>
                 <div className="flex flex-row justify-center items-center text-white font-extrabold absolute left-0 right-0 bottom-2 mx-auto">
                   <Image src={logo} width={200} height={200} alt="Gadget Box logo" className="w-[4rem] mr-2" />
@@ -87,7 +87,7 @@ export default function Index({data, errorMessage}){
              )
             : 
             (
-            <main className="mx-auto flex flex-col min-h-screen flex-grow">
+            <main className="mx-auto flex-grow">
                 <div className="image-container">
                   <div className="fade-out-image">
                     <Image src={background} width={1920} height={1080} priority alt="Red Dead Redemption 2 Background" className='object-cover h-auto w-[80%] xl:w-[65%] mx-auto z-0'/>
@@ -115,7 +115,7 @@ export default function Index({data, errorMessage}){
             <section className='w-full mx-auto text-gray-400 mt-5 mb-5'>
               <JustReviewed games={data.recentlyReviewed10Games} />
             </section>
-            </section>          
+            </section> 
             </main>
             )
           }

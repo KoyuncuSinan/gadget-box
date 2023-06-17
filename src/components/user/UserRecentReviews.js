@@ -1,9 +1,9 @@
-import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
+import ReviewStar from "../util/ReviewStar";
 
 export default function UserRecentReviews({ data }) {
   const isMobile = useBetterMediaQuery("(max-width: 899px)");
@@ -41,9 +41,8 @@ export default function UserRecentReviews({ data }) {
                   </span>
                 </div>
                 <div className="mt-3 text-gray-400 items-center flex flex-row justify-between">
-                  <span className="text-gray-400">
-                    {review.rating}/10 Rating
-                  </span>
+                <ReviewStar rating={review.rating}/>
+
                   <span className="text-sm text-gray-600 font-normal">
                     Played {review.createdAt.slice(0, 10)}
                   </span>
@@ -83,9 +82,8 @@ export default function UserRecentReviews({ data }) {
                   </span>
                 </div>
                 <div className="mt-3 text-gray-400 items-center flex flex-row justify-between">
-                  <span className="text-gray-400">
-                    {review.rating}/10 Rating
-                  </span>
+                <ReviewStar rating={review.rating}/>
+
                   <span className="text-sm text-gray-600 font-normal">
                     Played {review.createdAt.slice(0, 10)}
                   </span>

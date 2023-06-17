@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
+import ReviewStar from "../util/ReviewStar";
 
 export default function PopularReviewsThisWeek({ reviews }) {
     const isMobile = useBetterMediaQuery("(max-width: 899px)");
@@ -58,7 +59,9 @@ export default function PopularReviewsThisWeek({ reviews }) {
                     </span>
                   </Link>
                 </div>
-                <span className="text-gray-400">{review.rating}/10 Rating</span>
+                <div className="ml-2">
+                    <ReviewStar rating={review.rating} />
+                  </div>
               </div>
             </div>
             <div className="mb-3">
@@ -99,7 +102,9 @@ export default function PopularReviewsThisWeek({ reviews }) {
                       {review.owner.username}
                     </span>
                     </Link>
-                    <span className="text-gray-400 ml-2">{review.rating}/10 Rating</span>
+                    <div className="ml-2">
+                    <ReviewStar rating={review.rating} />
+                    </div>
                     </div>
 
                     <p className="my-2 text-gray-400 text-base">{review.reviews}</p>
