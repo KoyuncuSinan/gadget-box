@@ -21,9 +21,6 @@ export default async function filteredGames(req,res){
         .populate({ path: 'reviews', options: { sort: { createdAt: -1 } }, perDocumentLimit: 1 }) // Populate the reviews field and sort by createdAt in descending order
         .sort({ 'reviews.createdAt': -1 }) // Sort the games by the createdAt field of the most recent review
         .limit(8); // Limit the result to ten games
-    
-    console.log(recentlyReviewed10Games);
-
         return res.status(200).json({random6Games: random6Games, recentlyReviewed10Games: recentlyReviewed10Games});
 
     } catch(err){

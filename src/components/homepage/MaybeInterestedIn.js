@@ -7,7 +7,6 @@ import useBetterMediaQuery from "../util/useBetterMediaQuery";
 
 export default function MaybeInterestedIn({ games }) {
   const gameList = Object.values(games);
-  console.log(gameList);
   const isMobile = useBetterMediaQuery('(max-width: 899px)');
 
   const DisplayGames = gameList.map((game, index) => {

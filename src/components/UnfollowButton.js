@@ -39,7 +39,7 @@ export default function UnfollowButton(){
     }
 
     return(
-        <button onClick={handleClick} className="bg-orange-500 text-white">Unfollow</button>
+        <button onClick={handleClick} className="bg-orange-700 text-white px-2 rounded-md">Unfollow</button>
     )
 }
 

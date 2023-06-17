@@ -62,7 +62,7 @@ return(
             ) : isMobile ? (
                 <main className="w-[90%] mx-auto">
                 <section>
-                <div>
+                <div className="text-center">
                     <UserInformation infos ={data.userInformation}/>
                     <FollowButton user = {data.userInformation} />
                 </div>
@@ -77,7 +77,7 @@ return(
         :
         <main className="w-[60%] mx-auto">
                 <section>
-                <div>
+                <div className="text-center">
                     <UserInformation infos ={data.userInformation}/>
                     <FollowButton user = {data.userInformation} />
                 </div>

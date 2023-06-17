@@ -11,6 +11,8 @@ import Logo from "../../../public/icon.png"
 import Link from "next/link";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
 import Searchbar from "../util/Searchbar";
+import YourProfile from "../util/YourProfile";
+
 
 
 export default function Header(){
@@ -72,7 +74,7 @@ export default function Header(){
             }
 
             {isMobile === false && <>
-                <nav className="w-[60%] grid grid-cols-3 mx-auto relative text-white items-center
+                <nav className="w-[80%] lg:w-[70%] 2xl:w-[70%] grid grid-cols-3 mx-auto relative text-white items-center
                 ">
                 <Link href={"/"} className="w-[3rem] h-[3rem] object-cover col-span-1 flex flex-row items-center">
                     <Image src={Logo} width={500} height ={500} alt="Website's logo" ></Image>
@@ -81,18 +83,18 @@ export default function Header(){
                     <span className="ml-1">Box</span>
                     </div>
                 </Link>
-                <div className="flex flex-row col-span-2 ml-5 font-normal text-xs text-gray-300
-                xl:text-base
+                <ul className="flex flex-row col-span-2 ml-5 font-normal text-xs text-gray-300
+                xl:text-sm
                 items-center
                 justify-end
                 ">
-                    <Link href={"/auth/login"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">SIGN IN</Link>
-                    <Link href={"/auth/register"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">CREATE ACCOUNT</Link>
-                    <Link href={"/games"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">GAMES</Link>
-                    <Link href={"/reviews"} className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white">REVIEWS</Link>
-                    {status === "authenticated" && <Link href={`/user/${userId}`} className="hover:text-white">YOUR PROFILE</Link>}
+                    <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/auth/login"} >SIGN IN</Link></li>
+                    <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/auth/register"}>CREATE ACCOUNT</Link></li>
+                    <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/games"}>GAMES</Link></li>
+                    <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/reviews"}>REVIEWS</Link></li>
+                    {status === "authenticated" && <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><YourProfile /></li>}
                     <div className=" w-[20%] "><Searchbar /></div>
-                </div>
+                </ul>
                 </nav>
 
             </>}
