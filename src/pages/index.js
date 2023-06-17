@@ -87,7 +87,7 @@ export default function Index({data, errorMessage}){
              )
             : 
             (
-            <main className="mx-auto ">
+            <main className="mx-auto flex flex-col min-h-screen flex-grow">
                 <div className="image-container">
                   <div className="fade-out-image">
                     <Image src={background} width={1920} height={1080} priority alt="Red Dead Redemption 2 Background" className='object-cover h-auto w-[80%] xl:w-[65%] mx-auto z-0'/>
