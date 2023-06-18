@@ -13,9 +13,7 @@ export default function FollowButton({ user }) {
   const [loggedInUserId, setLoggedInUserId] = useState(null);
   const [mounted, setMounted] = useState(false);
 
-  console.log(loggedInUserId);
   const targetFollowersList = user.followers;
-  console.log(user._id);
 
   useEffect(() => {
     if (status === "authenticated" && session) {
@@ -58,8 +56,7 @@ export default function FollowButton({ user }) {
 
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
-
+  
   const handleClick = async (e) => {
     try {
       const res = await fetch(`/api/util/follow`, {
@@ -79,7 +76,6 @@ export default function FollowButton({ user }) {
         setIsLoading(false);
       }
       setState(data);
-      console.log(state);
       setIsLoading(false);
       router.reload();
     } catch (err) {

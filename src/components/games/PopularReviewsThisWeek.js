@@ -130,7 +130,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
       {isMobile ? (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-            <h3 className>POPULAR REVIEWS THIS WEEK</h3>
+            <h3>POPULAR REVIEWS THIS WEEK</h3>
             <Link href={`/games`} className="font-thin text-xs">
               MORE
             </Link>
@@ -141,7 +141,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
       ) : (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-            <h3 className>POPULAR REVIEWS THIS WEEK</h3>
+            <h3>POPULAR REVIEWS THIS WEEK</h3>
             <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>

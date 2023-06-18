@@ -31,7 +31,7 @@ export default function AllGames({games}){
          {isMobile ?
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-4">
-        <h3 className>ALL GAMES</h3>
+        <h3>ALL GAMES</h3>
         </div>
         <hr className="mb-2"></hr>
         <div className="mt-4 mb-2 flex justify-center items-center bg-gray-600 rounded-md h-[2rem]">
@@ -44,7 +44,7 @@ export default function AllGames({games}){
         :
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-4">
-        <h3 className>ALL GAMES</h3>
+        <h3>ALL GAMES</h3>
         </div>
         <hr className="mb-2"></hr>
         <div className="mt-4 mb-2 flex justify-center items-center bg-gray-600 rounded-md h-[2rem]">

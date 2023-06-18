@@ -11,10 +11,10 @@ export default function UserRecentGames({data}){
     const gameList = Object.values(data.getUserGames.games)
     const displayGames = gameList.map((game,index) => {
         return(
-        <li className="">
+        <li key={game._id}>
                     <Link href={`/games/${game._id}`}>
                         <Image src={game.image} width={1000} height={1000} alt="Game's image" 
-                        className="w-full h-full object-cover mx-auto rounded-md hover:brightness-110" priority>
+                        className="w-full h-full object-cover mx-auto rounded-md hover:brightness-110">
                         </Image>
                     </Link>
                 </li>
@@ -27,7 +27,7 @@ export default function UserRecentGames({data}){
             {isMobile ? (
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-10">
-        <h3 className>RECENT GAMES</h3>
+        <h3>RECENT GAMES</h3>
         <Link href={`/user/${id}/games`} className="font-thin text-xs">ALL</Link>
         </div>
         <hr className="mb-2"></hr>
@@ -41,7 +41,7 @@ export default function UserRecentGames({data}){
             (
             <> 
                     <div className="flex flex-row justify-between font-light text-gray-400 items-center mt-5">
-                    <h3 className>RECENT GAMES</h3>
+                    <h3>RECENT GAMES</h3>
                     <Link href={`/user/${id}/games`} className="font-thin text-xs hover:text-white">ALL</Link>
                     </div>
                     <hr className="mb-2"></hr>

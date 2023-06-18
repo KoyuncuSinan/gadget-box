@@ -35,7 +35,7 @@ export default function PopularGamesThisWeek({ games }) {
       {isMobile ? (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 items-center">
-            <h3 className>POPULAR GAMES THIS WEEK</h3>
+            <h3>POPULAR GAMES THIS WEEK</h3>
             <Link href={`/games`} className="font-thin text-xs">
               MORE
             </Link>
@@ -46,7 +46,7 @@ export default function PopularGamesThisWeek({ games }) {
       ) : (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 items-center">
-            <h3 className>POPULAR GAMES THIS WEEK</h3>
+            <h3>POPULAR GAMES THIS WEEK</h3>
             <Link href={`/games/all`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>

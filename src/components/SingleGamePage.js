@@ -46,7 +46,7 @@ export default function SingleGamePage({game}){
                     <div className="grid grid-cols-3">
                         <div className="col-span-3">
                             <div className="flex flex-row mt-3 items-center mb-2">
-                                <Image src={review.owner.profilePicture} width={300} height={300} className="w-[2rem] h-[2rem] rounded-full object-cover" priority></Image>
+                                <Image src={review.owner.profilePicture} alt={"Profile picture of reviewer"} width={300} height={300} className="w-[2rem] h-[2rem] rounded-full object-cover" priority></Image>
                                 <Link href={`/user/${review.owner._id}`}>
                                 <span className="ml-2 text-gray-400 font-bold text-lg hover:text-orange-300">{review.owner.username}</span>
                                 </Link>
@@ -72,7 +72,7 @@ export default function SingleGamePage({game}){
     <main>
     {isMobile ?
     <>
-    <Image src={game.image} width={900} height={900} className="brightness-75"></Image>
+    <Image src={game.image} width={900} height={900} alt="Game's image" className="brightness-75"></Image>
     <div className="w-[90%] mx-auto">
     <div className="grid grid-cols-4 mt-2 w-[95%] mx-auto">
         <section className="col-span-1 text-gray-400"> 
@@ -115,7 +115,7 @@ export default function SingleGamePage({game}){
     </div>
     <section>
     <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-        <h3 className>REVIEWS</h3>
+        <h3>REVIEWS</h3>
         </div>
         <hr className="mb-2"></hr>
         <ul>
@@ -130,7 +130,7 @@ export default function SingleGamePage({game}){
     <>
     <div className="image-container">
     <div className="fade-out-image">
-    <Image src={game.image} width={900} height={900} className="brightness-90 w-[70%] mx-auto object-cover h-auto rounded-sm"></Image>
+    <Image src={game.image} width={1200} height={1200} alt="Game's image" priority className="brightness-90 w-[70%] mx-auto object-cover h-auto rounded-sm"></Image>
     </div>
     </div>
     <div className="w-[60%] mx-auto">
@@ -174,7 +174,7 @@ export default function SingleGamePage({game}){
     </div>
     <section>
     <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-        <h3 className>REVIEWS</h3>
+        <h3>REVIEWS</h3>
         </div>
         <hr className="mb-2"></hr>
         <ul>

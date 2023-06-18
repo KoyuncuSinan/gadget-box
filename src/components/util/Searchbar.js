@@ -57,6 +57,7 @@ export default function Searchbar() {
           <input
             type="text"
             value={wordEntered}
+            id="searchbar"
             onChange={handleFilter}
             className="rounded-md w-[100%] px-1 h-[1.5rem] col-span-4"
           />

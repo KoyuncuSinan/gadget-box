@@ -97,7 +97,7 @@ export default function Header(){
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/auth/register"}>CREATE ACCOUNT</Link></li>
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/games"}>GAMES</Link></li>
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/reviews"}>REVIEWS</Link></li>
-                    {status === "authenticated" && <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><YourProfile /></li>}
+                    {status === "authenticated" && <span className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><YourProfile /></span>}
                     <div className=" w-[20%] "><Searchbar /></div>
                 </ul>
                 </nav>

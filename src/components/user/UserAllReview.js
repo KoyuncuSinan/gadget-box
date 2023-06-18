@@ -72,6 +72,7 @@ export default function UserAllReview({ data }) {
                 height={500}
                 className="col-span-1 w-[85%] h-[10rem] object-cover rounded-md"
                 priority
+                alt="Reviewed game's image"
               ></Image>
               <div className="col-span-3">
                 <div className="flex flex-row items-center">
@@ -122,7 +123,7 @@ export default function UserAllReview({ data }) {
         </Link>
       </div>
       <div className="flex flex-row justify-between font-light text-white mt-10 items-center mt">
-        <h3 className>REVIEWS</h3>
+        <h3>REVIEWS</h3>
       </div>
       <hr className="mb-2"></hr>
       <ul className="">{displayReviews}</ul>

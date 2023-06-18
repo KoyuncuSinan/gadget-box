@@ -18,7 +18,7 @@ export default function PopularReviewers({reviewers}){
         const isLastElement = index === reviewerList.length -1;
 
         return(
-                <li className="flex flex-row items-center mb-3">
+                <li className="flex flex-row items-center mb-3" key={reviewer._id}>
                     <Link href={`/user/${reviewer._id}`}>
                         <Image src={reviewer.profilePicture} width={1000} height={1000} alt="Reviewer's image" 
                         className="w-[3rem] h-[3rem] object-cover mx-auto rounded-full hover:scale-105" priority>
@@ -45,7 +45,7 @@ export default function PopularReviewers({reviewers}){
          (
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center">
-        <h3 className>POPULAR REVIEWERS</h3>
+        <h3>POPULAR REVIEWERS</h3>
         <Link href={`/games`} className="font-thin text-xs">MORE</Link>
         </div>
         <hr className="mb-2"></hr>
@@ -58,7 +58,7 @@ export default function PopularReviewers({reviewers}){
          (
             <> 
         <div className="flex flex-row justify-between font-light text-gray-400 items-center">
-        <h3 className>POPULAR REVIEWERS</h3>
+        <h3>POPULAR REVIEWERS</h3>
         <Link href={`/games`} className="font-thin text-xs">MORE</Link>
         </div>
         <hr className="mb-2"></hr>

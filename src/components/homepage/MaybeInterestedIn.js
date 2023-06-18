@@ -36,7 +36,7 @@ export default function MaybeInterestedIn({ games }) {
       {isMobile && (
         <>
           <div className="flex flex-row justify-between font-light items-center uppercase">
-            <h3 className>You may be interested in</h3>
+            <h3>You may be interested in</h3>
             <Link href={`/games`} className="font-thin text-xs ">
               MORE
             </Link>
@@ -52,7 +52,7 @@ export default function MaybeInterestedIn({ games }) {
       {isMobile === false && (
         <> 
         <div className="flex flex-row justify-between font-light items-center uppercase">
-            <h3 className>You may be interested in</h3>
+            <h3>You may be interested in</h3>
             <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>

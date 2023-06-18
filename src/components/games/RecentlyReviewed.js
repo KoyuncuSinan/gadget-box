@@ -13,7 +13,7 @@ export default function RecentlyReviewed({ games }) {
   const gameList = Object.values(games);
   const reviewedGames = gameList.slice(0, 8).map((game, index) => {
     return (
-      <li className="">
+      <li key={game._id}>
         <Link href={`/games/${game._id}`}>
           <Image
             src={game.image}
@@ -37,7 +37,7 @@ export default function RecentlyReviewed({ games }) {
       {isMobile ? (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-            <h3 className>RECENTLY REVIEWED</h3>
+            <h3>RECENTLY REVIEWED</h3>
             <Link href={`/games`} className="font-thin text-xs">
               MORE
             </Link>
@@ -49,7 +49,7 @@ export default function RecentlyReviewed({ games }) {
       (
         <>
           <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-            <h3 className>RECENTLY REVIEWED</h3>
+            <h3>RECENTLY REVIEWED</h3>
             <Link href={`/games`} className="font-thin text-xs hover:text-white">
               MORE
             </Link>

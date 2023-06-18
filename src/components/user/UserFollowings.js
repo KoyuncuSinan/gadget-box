@@ -16,7 +16,7 @@ export default function UserFollowings({data}){
       const followingList = Object.values(data.getUserFollowings.followings)
       const displayFollowings = followingList.slice(0,18).map((following, index) => {
         return(
-            <li>
+            <li key={following._id}>
             <Link href={`/user/${following._id}`}>
                 <Image src={following.profilePicture} width={500} height={500} alt="Following's profile picture" 
                 className="w-[3rem] h-[3rem] rounded-full object-cover hover:scale-105"></Image>
@@ -47,7 +47,7 @@ export default function UserFollowings({data}){
         (
             <> 
         <div className="flex flex-row justify-between font-light text-gray-400 mt-10 items-center mt">
-        <h3 className>FOLLOWING</h3>
+        <h3>FOLLOWING</h3>
         <span className="font-thin text-xs">{followingList.length}</span>
         </div>
         <hr className="mb-2"></hr>

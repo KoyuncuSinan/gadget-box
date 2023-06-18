@@ -18,7 +18,7 @@ export default function UserPopularReviews({data}){
       const popularReviews = reviewList.map((review, index) => {
         const isLastElement = index === reviewList.length -1;
         return(
-            <li className="" key={review._id}>
+            <li key={review._id}>
               {isMobile ? (
                 <>
                   <div className="grid grid-cols-3">
@@ -27,6 +27,7 @@ export default function UserPopularReviews({data}){
                       width={500}
                       height={500}
                       className="col-span-1 w-[85%] h-[10rem] object-cover rounded-md"
+                      alt="Reviewed game's image"
                     ></Image>
                     <div className="col-span-2">
                       <div className="flex flex-row items-center">
@@ -67,6 +68,7 @@ export default function UserPopularReviews({data}){
                       width={500}
                       height={500}
                       className="col-span-1 w-[85%] h-[10rem] object-cover rounded-md"
+                      alt="Reviewed game's image"
                     ></Image>
                     <div className="col-span-3">
                       <div className="flex flex-row items-center">
@@ -106,7 +108,7 @@ export default function UserPopularReviews({data}){
     return(
         <>
         <div className="flex flex-row justify-between font-light text-gray-400 mt-10 items-center mt">
-        <h3 className>POPULAR REVIEWS</h3>
+        <h3>POPULAR REVIEWS</h3>
         <Link href={`/user/${id}/reviews`} className="font-thin text-xs hover:text-white">MORE</Link>
         </div>
         <hr className="mb-2"></hr>

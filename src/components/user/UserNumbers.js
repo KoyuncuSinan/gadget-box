@@ -3,9 +3,6 @@ import Divider from '@mui/material/Divider';
 
 
 export default function UserNumbers({data}){
-    const isMobile = useBetterMediaQuery("(max-width: 899px)");
-    console.log(data.getUserGames.games)
-
     return(
         <>
         

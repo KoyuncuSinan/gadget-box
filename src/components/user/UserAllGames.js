@@ -34,7 +34,7 @@ export default function UserAllGames({data}){
             </Link> 
         </div>
         <div className="flex flex-row justify-between font-light text-white mt-10 items-center mt">
-        <h3 className>PLAYED</h3>
+        <h3>PLAYED</h3>
         </div>
         <hr className="mb-2"></hr>
         <ul className="grid grid-cols-4 umd:grid-cols-5 gap-2">

@@ -133,7 +133,7 @@ export default function AllReviews({ reviews }) {
   return (
     <>
       <div className="flex flex-row justify-between font-light text-gray-400 mt-5 items-center">
-        <h3 className>All Reviews</h3>
+        <h3>All Reviews</h3>
       </div>
       <hr className="mb-2"></hr>
       <ul className="">{allReviews}</ul>
