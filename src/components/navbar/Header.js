@@ -69,7 +69,7 @@ export default function Header(){
             <div>
                 {isLoginMenuClicked && <span className="font-bold drop-shadow-2xl"><NavLogin /></span>}
                 {isMenuClicked && <MobileMenu /> }
-                {isSearchClicked && <MobileSearchbar />}
+                {isSearchClicked && <Searchbar />}
             </div>
             </>
             }

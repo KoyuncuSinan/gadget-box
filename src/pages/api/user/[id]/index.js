@@ -4,7 +4,7 @@ import databaseConnection from "../../util/databaseConnect";
 import Review from "@/models/Review";
 import Game from "@/models/Game";
 
-export default async function(req,res) {
+export default async function userPage(req,res) {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method now allowed." });
   }

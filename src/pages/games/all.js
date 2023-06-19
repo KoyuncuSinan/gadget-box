@@ -29,7 +29,7 @@ export const getServerSideProps = async () => {
     };
 
 
-export default function({data,errorMessage}){
+export default function GamesAll({data,errorMessage}){
 
     const [isThereError, setIsThereError] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);

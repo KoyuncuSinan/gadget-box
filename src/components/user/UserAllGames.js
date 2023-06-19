@@ -14,7 +14,7 @@ export default function UserAllGames({data}){
       const gameList = Object.values(data.userGames.games)
       const displayList = gameList.map((game, index) =>{
         return(
-            <li>
+            <li key={game._id}>
                 <Link href={`/games/${game._id}`}>
                     <Image src={game.image} height={600} width={600} alt="Game's image" className="h-[8rem] sm:h-[9rem] md:h-[10rem] umd:h-[12rem] hover:brightness-110 
                     w-[100%] object-cover rounded-md"></Image>

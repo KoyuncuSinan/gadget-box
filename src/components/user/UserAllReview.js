@@ -30,6 +30,7 @@ export default function UserAllReview({ data }) {
                 height={500}
                 className="col-span-1 w-[85%] h-[10rem] object-cover rounded-md"
                 priority
+                alt="Reviewed game's image"
               ></Image>
               <div className="col-span-2">
                 <div className="flex flex-row items-center">

@@ -67,15 +67,15 @@ export default function Index({data, errorMessage}){
                 </div>
                 </div>
                 <h2 className="w-[80%] mx-auto font-normal text-white text-xl text-center mt-4">
-                  Track games you've played.
+                  {`Track games you've played.`}
                   <br />
                   Save those you want to try.
                   <br />
-                  Tell your followers what's good.
+                  {`Tell your followers what's good.`}
                 </h2>
                 <div className='w-full text-center'>
                 <Link href={"/auth/register"}>
-                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%]'>GET STARTED - IT'S FREE</button>
+                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%]'> {`GET STARTED - IT'S FREE`}</button>
                 </Link>
                 </div>
                 <h3 className='text-center mt-5 text-gray-500 font-light'>The social network for gamers.</h3>
@@ -101,15 +101,15 @@ export default function Index({data, errorMessage}){
               <section key="desktop-section" className='umd:w-[60%] mx-auto absolute top-[30rem] right-0 bottom-0 left-0'>
                 <h2 className="mx-auto text-white text-2xl text-center leading-9
                 xl:text-3xl font-light">
-                  Track games you've played.
+                   {`Track games you've played.`}
                   <br />
                   Save those you want to try.
                   <br />
-                  Tell your followers what's good.
+                  {`Tell your followers what's good.`}
                 </h2>
                 <div className='w-full text-center'>
                 <Link href={"/auth/register"}>
-                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%] hover:brightness-125'>GET STARTED - IT'S FREE</button>
+                <button className='px-3 py-1 bg-orange-800 mt-8 mx-auto text-white rounded-sm w-[65%] hover:brightness-125'> {`GET STARTED - IT'S FREE`}</button>
 
                 </Link>
                 </div>
