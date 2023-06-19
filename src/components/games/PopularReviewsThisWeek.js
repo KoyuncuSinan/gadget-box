@@ -51,6 +51,7 @@ export default function PopularReviewsThisWeek({ reviews }) {
                     src={review.owner.profilePicture}
                     width={300}
                     height={300}
+                    alt="Profile picture of review owner"
                     className="w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem]  rounded-full object-cover"
                   ></Image>
                   <Link href={`/user/${review.owner._id}`}>

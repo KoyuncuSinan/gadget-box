@@ -28,7 +28,7 @@ export const getServerSideProps = async () => {
   }; 
 
 
-export default function({data, errorMessage}){
+export default function Reviews({data, errorMessage}){
 
     const [isThereError, setIsThereError] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
