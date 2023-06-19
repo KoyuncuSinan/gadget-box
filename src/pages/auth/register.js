@@ -1,5 +1,6 @@
 import { useState,useRef,useEffect } from "react";
 import Header from "@/components/navbar/Header";
+import { useRouter } from "next/router";
 
 export default function Register(){
     const [userForm, setUserForm] = useState({
@@ -9,12 +10,11 @@ export default function Register(){
         email:"",
         password:"",
     })
-    const [profilePicture,setProfilePicture] = useState("");
+    const [profilePicture, setProfilePicture] = useState(null)
     const [errorMessage, setErrorMessage] = useState("");
     const [isThereError, setIsThereError] = useState(false);
-    
+    const router = useRouter();
 
-    const inputData = new FormData();
     
 
 
@@ -22,17 +22,16 @@ export default function Register(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        inputData.append("firstname",userForm.firstname)
-        inputData.append("lastname",userForm.lastname)
-        inputData.append("username",userForm.username)
-        inputData.append("email",userForm.email)
-        inputData.append("password",userForm.password)
-        inputData.append("profilePicture",profilePicture)
         try {
-        console.log(Array.from(inputData.entries()));
+        const formData = new FormData();
+        Object.entries(userForm).forEach(([key, value]) => {
+            formData.append(key,value);
+        });
+         formData.append("profilePicture", profilePicture)
+        console.log(Array.from(formData.entries()));
           const res = await fetch("/api/register", {
             method: "POST",
-            body: inputData,
+            body: formData,
           });
           const data = await res.json();
           console.log(data.message)
@@ -42,6 +41,7 @@ export default function Register(){
             setErrorMessage(data.message);
           } else {
             console.log(data.msg);
+            router.push("/auth/login")
           }
         } catch (err) {
           console.log(err);
@@ -51,12 +51,24 @@ export default function Register(){
         }
       };
 
+      const handleInputChange = (e) => {
+        const {name, value, files} = e.target;
+        if(name === "profilePicture"){
+            setProfilePicture(files[0]);
+        }else{
+            setUserForm((prevUserForm) => ({
+                ...prevUserForm,
+                [name]: value,
+            }))
+        }
+      };
 
     return(
         <>
         <Header />
         <h3 className="flex justify-center font-medium text-lg text-white mt-10">Register</h3>
-        {isThereError ? <p className="text-white font-bold text-xl text-center my-2 p-1 bg-red-600 w-[40%] umd:w-[20%] mx-auto rounded-md">{errorMessage}</p> : null}
+        {
+            isThereError ? <p className="text-white font-bold text-xl text-center my-2 p-1 bg-red-600 w-[40%] umd:w-[20%] mx-auto rounded-md">{errorMessage}</p> : null}
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-[80%] relative mx-auto sm:w-[75%] md:w-[70%] umd:w-[20%] mt-5 text-gray-400">
             <div className="flex flex-col mb-2">
                 <label htmlFor="firstname">Firstname</label>
@@ -67,7 +79,7 @@ export default function Register(){
                     name="firstname"
                     id="firstname"
                     className="h-[2rem] rounded-md"
-                    onChange={(e) => setUserForm({...userForm, firstname: e.target.value})}
+                    onChange={handleInputChange}
                 />
             </div>
             <div className="flex flex-col mb-2">
@@ -79,7 +91,7 @@ export default function Register(){
                     name="lastname"
                     className="h-[2rem] rounded-md"
                     id="lastname"
-                    onChange={(e) => setUserForm({...userForm, lastname: e.target.value})}
+                    onChange={handleInputChange}
                 />
             </div>
             <div className="flex flex-col mb-2">
@@ -103,7 +115,7 @@ export default function Register(){
                     name="email"
                     className="h-[2rem] rounded-md"
                     id="email"
-                    onChange={(e) => setUserForm({...userForm, email: e.target.value})}
+                    onChange={handleInputChange}
                 />
             </div>
             <div className="flex flex-col mb-2">
@@ -115,7 +127,7 @@ export default function Register(){
                     value={userForm.password}
                     name="password"
                     id="password"
-                    onChange={(e) => setUserForm({...userForm, password: e.target.value})}
+                    onChange={handleInputChange}
                 />
             </div>
             <div className="flex flex-col mb-2">
@@ -123,10 +135,10 @@ export default function Register(){
                 <input
                     type="file"
                     required 
-                    className="h-[2rem] text-gray-400"
-                    name="profilePicture rounded-md"
+                    className="h-[2rem] text-gray-400 rounded-md"
+                    name="profilePicture"
                     id="profilePicture"
-                    onChange={(e) => setProfilePicture(e.target.files[0])}
+                    onChange={handleInputChange}
                 />
             </div>
             <button type="submit" className="bg-orange-700 p-2 rounded-md text-white shadow-2xl hover:text-white hover:bg-black absolute right-2 mt-3">Register</button>

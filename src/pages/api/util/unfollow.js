@@ -1,5 +1,5 @@
 import User from "@/models/User";
-import { connectDB } from "../lib/db";
+import databaseConnection from "./databaseConnect";
 import { getSession } from "next-auth/react";
 import formidable from "formidable";
 
@@ -16,12 +16,7 @@ export default async function unfollow(req, res) {
     return res.status(405).json({ message: "Method not allowed." });
   }
 
-  try {
-    await connectDB();
-  } catch (err) {
-    console.error("MongoDB connection error.", err);
-    return res.status(500).json({ message: "Internal server error." });
-  }
+  await databaseConnection();
 
   try {
     const form = new formidable.IncomingForm

@@ -10,7 +10,6 @@ export default function NavLogin(){
     const [password, setPassword] = useState("");
 
     const {data: session, status} = useSession()
-    console.log(session.status)
     const submitHandler = async(e) => {
         e.preventDefault()
 

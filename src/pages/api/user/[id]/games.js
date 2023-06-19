@@ -1,5 +1,5 @@
 import User from "@/models/User";
-import { connectDB, closeConnection } from "../../lib/db";
+import databaseConnection from "../../util/databaseConnect";
 import mongoose from "mongoose";
 import Game from "@/models/Game";
 
@@ -8,12 +8,7 @@ export default async function games(req, res) {
     return res.status(405).json({ message: "Method now allowed." });
   }
 
-  try {
-    await connectDB();
-  } catch (err) {
-    console.error("MongoDB connection error.", err);
-    return res.status(500).json({ message: "Internal server error." });
-  }
+  await databaseConnection();
 
   try {
     const userId = req.query.id;

@@ -46,7 +46,7 @@ export default function SingleGamePage({game}){
                     <div className="grid grid-cols-3">
                         <div className="col-span-3">
                             <div className="flex flex-row mt-3 items-center mb-2">
-                                <Image src={review.owner.profilePicture} alt={"Profile picture of reviewer"} width={300} height={300} className="w-[2rem] h-[2rem] rounded-full object-cover" priority></Image>
+                                <Image src={review.owner.profilePicture} alt={"Profile picture of reviewer"} width={300} height={300} className="w-[2rem] h-[2rem] rounded-full object-cover"></Image>
                                 <Link href={`/user/${review.owner._id}`}>
                                 <span className="ml-2 text-gray-400 font-bold text-lg hover:text-orange-300">{review.owner.username}</span>
                                 </Link>
@@ -72,11 +72,11 @@ export default function SingleGamePage({game}){
     <main>
     {isMobile ?
     <>
-    <Image src={game.image} width={900} height={900} alt="Game's image" className="brightness-75"></Image>
+    <Image src={game.image} width={900} height={900} alt="Game's image" priority className="brightness-75"></Image>
     <div className="w-[90%] mx-auto">
     <div className="grid grid-cols-4 mt-2 w-[95%] mx-auto">
         <section className="col-span-1 text-gray-400"> 
-            <Image src={game.image} width={600} height={600} alt="Game's image" className="h-[10rem] object-cover rounded-md"></Image>
+            <Image src={game.image} width={600} height={600} alt="Game's image" priority className="h-[10rem] object-cover rounded-md"></Image>
             <div className="flex flex-row mt-1">
                 <VisibilityIcon />
                 <span className="text-center block font-light ml-1">{game.reviewCount}</span>
@@ -136,7 +136,7 @@ export default function SingleGamePage({game}){
     <div className="w-[60%] mx-auto">
     <div className="grid grid-cols-4 mt-2 mx-auto">
         <section className="col-span-1 text-gray-400"> 
-            <Image src={game.image} width={800} height={800} alt="Game's image" className="h-[12rem] lg:h-[14rem] xl:h-[16rem] 2xl:h-[18rem] 3xl:h-[20rem]  w-[80%] object-cover rounded-md"></Image>
+            <Image src={game.image} width={800} height={800} alt="Game's image" priority className="h-[12rem] lg:h-[14rem] xl:h-[16rem] 2xl:h-[18rem] 3xl:h-[20rem]  w-[80%] object-cover rounded-md"></Image>
             <div className="flex flex-row mt-1">
                 <VisibilityIcon />
                 <span className="text-center block font-light ml-1">{game.reviewCount}</span>

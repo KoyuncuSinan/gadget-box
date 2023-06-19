@@ -1,19 +1,14 @@
 import Review from "@/models/Review";
 import Game from "@/models/Game";
 import mongoose from "mongoose";
-import { connectDB, closeConnection } from "../lib/db";
+import databaseConnection from "../util/databaseConnect";
 
 export default async function(req,res){
     if (req.method !== "GET") {
         return res.status(405).json({ message: "Method not allowed." });
       }
-    
-      try {
-        await connectDB();
-      } catch (err) {
-        console.error("MongoDB Connection Error", err);
-        return res.status(500).json({ message: "Internal server error" });
-      }
+
+      await databaseConnection();
     
      try{
        const gameId = req.query.id;

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import User from "../../models/User";
 import bcrypt from "bcrypt";
-import { connectDB, closeConnection} from "./lib/db";
+import databaseConnection from "./util/databaseConnect";
 import formidable from "formidable"
 import cloudinary from "@/pages/api/lib/middlewares/imageUpload";
 
@@ -15,12 +15,8 @@ export default async function register(req, res) {
   if (req.method !== 'POST') {
       return res.status(405).json({message: "Method not allowed."})
   }
-  try{
-    await connectDB();
-  } catch(err){
-    console.error("MongoDB connection error",err)
-    return res.status(500).json({message: "Internal Server Error"})
-  }
+
+  await databaseConnection();
 
   const form = new formidable.IncomingForm({multiples:true})
 
@@ -79,7 +75,6 @@ export default async function register(req, res) {
     profilePicture: publicUrl
   });
   await user.save();
-  closeConnection()
   return res.status(201).json({message: "User created successfully", user});
 } catch (err) {
   console.error("Error while saving user data", err);

@@ -2,19 +2,16 @@ import Review from "@/models/Review";
 import User from "@/models/User";
 import mongoose from "mongoose";
 import Game from "@/models/Game";
-import { connectDB } from "../lib/db";
+import databaseConnection from "../util/databaseConnect";
 
 export default async function allReviews(req,res){
     if(req.method !== "GET"){
         return res.status(405).json({message: "Method not allowed."})
     }
 
-    try{
-        await connectDB();
-    }catch(err){
-        console.error("MongoDB Connection Error", err)
-        return res.status(500).json({message: "Internal server error"})
-    }
+    await databaseConnection();
+
+
     try{
         const reviews = await Review.find()
         .sort({ createdAt: -1 })

@@ -13,7 +13,7 @@ export default function UserRecentGames({data}){
         return(
         <li key={game._id}>
                     <Link href={`/games/${game._id}`}>
-                        <Image src={game.image} width={1000} height={1000} alt="Game's image" 
+                        <Image src={game.image} width={1000} height={1000} priority alt="Game's image" 
                         className="w-full h-full object-cover mx-auto rounded-md hover:brightness-110">
                         </Image>
                     </Link>

@@ -18,6 +18,7 @@ export default function JustReviewed({ games }) {
             width={500}
             height={500}
             alt="Game's image"
+            loading="lazy"
             className="h-[80%] w-[100%] object-cover rounded-md hover:brightness-110
             umd:h-[12rem]
             lg:h-[14rem] 

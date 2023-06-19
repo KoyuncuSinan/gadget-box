@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { connectDB, closeConnection } from "../lib/db";
+import databaseConnection from "../util/databaseConnect";
 import Game from "@/models/Game";
 
 export default async function Searchbar(req,res){
@@ -7,12 +7,7 @@ export default async function Searchbar(req,res){
         return res.status(405).json({message: "Method not allowed."})
     }
 
-    try{
-        await connectDB();
-    }catch(err){
-        console.error("MongoDB Connection Error", err)
-        return res.status(500).json({message: "Internal server error"})
-    }
+    await databaseConnection();
 
     try{
         const gamesForSearchbar = await Game.find();

@@ -33,19 +33,17 @@ export const getServerSideProps = async ({query}) => {
 
 export default function GameSingle({data, errorMessage}){
     const [isError, setIsError] = useState(false);
-    const [isLoading, setIsLoading] = useState(true)
   
     const isMobile = useBetterMediaQuery("(max-width: 899px)");
 
     useEffect(() => {
         setIsError(!data);
-        setIsLoading(false);
       }, [data]);
 
     return(
         <>
             <Header />
-        {isLoading ? (<p>Loading...</p>) : isError ? (<p>{errorMessage}</p>) : isMobile ? (
+        {isError ? (<p>{errorMessage}</p>) : isMobile ? (
             <>
                 <SingleGamePage game={data}/>
             </> 

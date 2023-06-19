@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useMediaQuery } from "react-responsive";
 import useBetterMediaQuery from "../util/useBetterMediaQuery";
 
 export default function MaybeInterestedIn({ games }) {
@@ -16,6 +15,7 @@ export default function MaybeInterestedIn({ games }) {
           <Image
             src={game.image}
             width={500}
+            priority
             height={500}
             alt="Game's image"
             className="h-[80%] w-[100%] object-cover rounded-md hover:brightness-110

@@ -1,6 +1,5 @@
 import User from "@/models/User";
-import { connectDB } from "../lib/db";
-import { getSession } from "next-auth/react";
+import databaseConnection from "../util/databaseConnect";
 import { getServerSession } from "next-auth/next";
 import mongoose from "mongoose";
 import { authOptions } from "../auth/[...nextauth]";
@@ -10,12 +9,8 @@ export default async function yourProfile(req, res) {
     return res.status(405).json({ message: "Method now allowed." });
   }
 
-  try {
-    await connectDB();
-  } catch (err) {
-    console.error("MongoDB connection error.", err);
-    return res.status(500).json({ message: "Internal server error." });
-  }
+  await databaseConnection();
+
   const session = await getServerSession(req,res, authOptions);
   console.log(session)
   try {

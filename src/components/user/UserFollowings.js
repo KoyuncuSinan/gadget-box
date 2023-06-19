@@ -32,7 +32,7 @@ export default function UserFollowings({data}){
          {isMobile ? (
         <> 
         <div className="flex flex-row justify-between font-light text-gray-400 mt-10 items-center mt">
-        <h3 className>FOLLOWING</h3>
+        <h3>FOLLOWING</h3>
         <Link href={`/user/${id}/following`} className="font-thin text-xs">{followingList.length}</Link>
         </div>
         <hr className="mb-2"></hr>

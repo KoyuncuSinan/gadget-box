@@ -1,20 +1,17 @@
 import mongoose from "mongoose";
-import { connectDB, closeConnection } from "../lib/db";
+import { connectDB,cachedDb} from "../lib/db";
 import Game from "@/models/Game";
 import Review from "@/models/Review";
+import databaseConnection from "../util/databaseConnect";
 
 export default async function filteredGames(req,res){
     if(req.method !== "GET"){
         return res.status(405).json({message: "Method not allowed."})
     }
 
-    try{
-        await connectDB();
-    }catch(err){
-        console.error("MongoDB Connection Error", err)
-        return res.status(500).json({message: "Internal server error"})
-    }
-    try{
+    await databaseConnection();
+   
+   try{
         const random6Games = await Game.aggregate([{$sample: {size:6} }])
         const recentlyReviewed10Games = await Game
         .find({ reviews: { $exists: true, $not: { $size: 0 } } }) // Find games that have at least one review

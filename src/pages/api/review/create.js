@@ -1,6 +1,6 @@
 import Review from "@/models/Review";
 import mongoose from "mongoose";
-import { connectDB, closeConnection } from "../lib/db";
+import databaseConnection from "../util/databaseConnect";
 import formidable from "formidable"
 import User from "@/models/User";
 import Game from "@/models/Game";
@@ -16,12 +16,9 @@ export default async function createReview(req,res){
     if(req.method !== "POST"){
         return res.status(405).json({message: "Method not allowed"})
     };
-    try{
-        await connectDB();
-    }catch(err){
-        console.error("MongoDB Connection Error",err)
-        return res.status(500).json({message:"Internal server error"})
-    }
+
+    await databaseConnection();
+
     const form = new formidable.IncomingForm
     form.parse(req,async(err,fields, files) => {
         if(err){
@@ -61,14 +58,10 @@ export default async function createReview(req,res){
                 },
                 {new: true},
             )
-            closeConnection();
             return res.status(201).json({message: "Review created successfully"})
         }catch(err){
             console.error("Error while creating review",err)
             return res.status(500).json({message: "Internal Server Error"});
-        }finally {
-            closeConnection();
-          }
-
+        }
     })
 }
