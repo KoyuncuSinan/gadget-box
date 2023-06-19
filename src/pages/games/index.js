@@ -8,7 +8,7 @@ import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
 
 export const getServerSideProps = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/games/gamesPage", {
+    const res = await fetch("https://gadget-box.vercel.app/api/games/gamesPage", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

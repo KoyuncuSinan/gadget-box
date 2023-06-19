@@ -5,7 +5,7 @@ import AllGames from "@/components/games/AllGames";
 
 export const getServerSideProps = async () => {
     try {
-        const res = await fetch("http://localhost:3000/api/games/allGames", {
+        const res = await fetch("https://gadget-box.vercel.app/api/games/allGames", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

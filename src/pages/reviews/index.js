@@ -4,7 +4,7 @@ import Header from "@/components/navbar/Header";
 
 export const getServerSideProps = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/review/allReviews", {
+      const res = await fetch("https://gadget-box.vercel.app/api/review/allReviews", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

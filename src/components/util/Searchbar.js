@@ -31,7 +31,7 @@ export default function Searchbar() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch("http://localhost:3000/api/games/searchbar", {
+          const res = await fetch("https://gadget-box.vercel.app/api/games/searchbar", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

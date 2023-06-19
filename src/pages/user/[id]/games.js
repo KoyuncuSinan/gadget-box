@@ -7,7 +7,7 @@ export const getServerSideProps = async ({query}) =>{
     const {id} = query;    
     
     try{
-        const res = await fetch(`http://localhost:3000/api/user/${id}/games`,{
+        const res = await fetch(`https://gadget-box.vercel.app/api/user/${id}/games`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
