@@ -8,6 +8,8 @@ import UserPopularReviews from "@/components/user/UserPopularReviews";
 import UserFollowings from "@/components/user/UserFollowings";
 import FollowButton from "@/components/FollowButton";
 import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
@@ -51,7 +53,9 @@ export default function Id({ data, errorMessage }) {
       <Header />
 
       {isLoading ? (
-        <p>Loading...</p>
+        <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box>
       ) : isThereError ? (
         <p>{errorMessage}</p>
       ) : isMobile ? (

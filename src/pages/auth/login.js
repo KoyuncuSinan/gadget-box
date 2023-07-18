@@ -4,11 +4,14 @@ import React, {useState} from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/navbar/Header";
 import { useRouter } from "next/router";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function Login(){
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isLoading ,setIsLoading] = useState(false);
     const [isThereError, setIsThereError] = useState(false);
     const router = useRouter();
 
@@ -16,6 +19,7 @@ export default function Login(){
     console.log(session.status)
     const submitHandler = async(e) => {
         e.preventDefault()
+        setIsLoading(true);
 
         try {
             const data = await signIn("credentials", {
@@ -27,12 +31,14 @@ export default function Login(){
             if(data.error){
                 setIsThereError(true)
                 setErrorMessage(data.error)
+            }else{
+                router.push('/games');
             }
-            router.push('/games');
         } catch(err){
             console.error(err)
-            console.log(err)
-            
+            console.log(err)     
+        }finally{
+            setIsLoading(false);
         }
     }
 
@@ -66,6 +72,9 @@ return(
         :  
         <button className="bg-orange-700 text-white px-3 py-1 rounded-md">Login</button>}
         </div>
+        {isLoading && <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box> }
        
     </form>
 

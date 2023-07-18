@@ -1,6 +1,8 @@
 import { useState,useRef,useEffect } from "react";
 import Header from "@/components/navbar/Header";
 import { useRouter } from "next/router";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function Register(){
     const [userForm, setUserForm] = useState({
@@ -11,6 +13,7 @@ export default function Register(){
         password:"",
     })
     const [profilePicture, setProfilePicture] = useState(null)
+    const [isLoading ,setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isThereError, setIsThereError] = useState(false);
     const router = useRouter();
@@ -22,6 +25,7 @@ export default function Register(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
         const formData = new FormData();
         Object.entries(userForm).forEach(([key, value]) => {
@@ -48,6 +52,8 @@ export default function Register(){
           setIsThereError(true);
           setErrorMessage(err);
           return err;
+        }finally{
+            setIsLoading(false);
         }
       };
 
@@ -142,6 +148,9 @@ export default function Register(){
                 />
             </div>
             <button type="submit" className="bg-orange-700 p-2 rounded-md text-white shadow-2xl hover:text-white hover:bg-black absolute right-2 mt-3">Register</button>
+            {isLoading && <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box> }
         </form>
         </>
     )

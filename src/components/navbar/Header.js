@@ -17,6 +17,7 @@ import {signOut} from "next-auth/react"
 
 
 export default function Header(){
+    const [isMounted, setIsMounted] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuClicked , setIsMenuClicked] = useState(false);
     const [isLoginMenuClicked, setIsLoginMenuClicked] = useState(false);
@@ -74,7 +75,7 @@ export default function Header(){
             </>
             }
 
-            {isMobile === false && <>
+            {isMobile === false &&<>
                 <nav className="w-[80%] lg:w-[70%] 2xl:w-[70%] grid grid-cols-3 mx-auto relative text-white items-center
                 ">
                 <Link href={"/"} className="w-[3rem] h-[3rem] object-cover col-span-1 flex flex-row items-center">
@@ -98,6 +99,7 @@ export default function Header(){
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/games"}>GAMES</Link></li>
                     <li className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><Link href={"/reviews"}>REVIEWS</Link></li>
                     {status === "authenticated" && <span className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white"><YourProfile /></span>}
+                    {status === "unauthenticated" && <Link className="mr-[6px] xl:mr-3 2xl:mr-5 hover:text-white" href={"/auth/login"}>YOUR PROFILE</Link>}
                     <div className=" w-[20%] "><Searchbar /></div>
                 </ul>
                 </nav>

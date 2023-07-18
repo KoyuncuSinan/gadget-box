@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from "react";
 import AllReviews from "@/components/review/AllReviews";
 import Header from "@/components/navbar/Header";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const getServerSideProps = async () => {
     try {
@@ -44,7 +46,9 @@ export default function Reviews({data, errorMessage}){
         <main className="w-[90%] umd:w-[60%] mx-auto">
             <section>
             {isLoading ? (
-            <p>Loading...</p>
+              <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box>
                 ) : isThereError ? (
                 <p>{errorMessage}</p>
                 ) : (

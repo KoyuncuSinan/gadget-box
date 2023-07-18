@@ -3,6 +3,8 @@ import SingleGamePage from "@/components/SingleGamePage";
 import { useRouter } from "next/router";
 import Header from "@/components/navbar/Header";
 import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const getServerSideProps = async ({query}) => {
     const {id} = query;    
@@ -33,17 +35,20 @@ export const getServerSideProps = async ({query}) => {
 
 export default function GameSingle({data, errorMessage}){
     const [isError, setIsError] = useState(false);
-  
+    const [isLoading, SetIsLoading] = useState(true);
     const isMobile = useBetterMediaQuery("(max-width: 899px)");
 
     useEffect(() => {
         setIsError(!data);
+        SetIsLoading(false);
       }, [data]);
 
     return(
         <>
             <Header />
-        {isError ? (<p>{errorMessage}</p>) : isMobile ? (
+        {isLoading ? <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+        <CircularProgress />
+        </Box> : isError ? (<p>{errorMessage}</p>) : isMobile ? (
             <>
                 <SingleGamePage game={data}/>
             </> 

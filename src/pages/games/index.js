@@ -5,6 +5,8 @@ import RecentlyReviewed from "@/components/games/RecentlyReviewed";
 import PopularReviewsThisWeek from "@/components/games/PopularReviewsThisWeek";
 import PopularReviewers from "@/components/games/PopularReviewers";
 import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const getServerSideProps = async () => {
   try {
@@ -50,7 +52,9 @@ export default function Index({ data, errorMessage }) {
         <main className="w-[90%] mx-auto">
         <section>
           {isLoading ? (
-            <p>Loading...</p>
+            <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box>
           ) : isThereError ? (
             <p>{errorMessage}</p>
           ) : (
@@ -76,7 +80,9 @@ export default function Index({ data, errorMessage }) {
         <main className="w-[60%] mx-auto">
         <section>
           {isLoading ? (
-            <p>Loading...</p>
+            <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+          </Box>
           ) : isThereError ? (
             <p>{errorMessage}</p>
           ) : (

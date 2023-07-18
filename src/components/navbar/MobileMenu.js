@@ -36,12 +36,10 @@ export default function MobileMenu(){
                 <ReviewsIcon />
                 <Link href={"/reviews"} className='ml-3'>REVIEWS</Link>
             </li>
-            {isLoggedIn && 
-            <>
+            <div>
             <hr className='w-[90%] mx-auto mb-2'></hr>
                 <YourProfile />
-            </>
-            }
+            </div>
         </ul>
 
     )

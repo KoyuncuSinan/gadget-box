@@ -59,6 +59,29 @@ import Link from "next/link";
             </>
           );
         }
+
+        if (status === 'unauthenticated') {
+          return (
+            <>
+            {isMobile ?
+            <li className='flex flex-row justify-start w-[90%] mx-auto mb-2'>
+            <AccountBoxIcon />
+            <Link href={`/auth/login`} className='mb-2 ml-3'>
+              YOUR PROFILE
+            </Link>
+          </li> 
+          :
+          <li className="list-none">
+            <Link href={"/auth/login"}>
+              YOUR PROFILE
+            </Link>
+          </li> 
+          }
+
+            </>
+          );
+        }
+
       
         return null;
       }

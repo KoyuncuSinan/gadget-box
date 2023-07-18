@@ -2,6 +2,8 @@ import React,{useState, useEffect} from "react";
 import Header from "@/components/navbar/Header";
 import useBetterMediaQuery from "@/components/util/useBetterMediaQuery";
 import UserAllGames from "@/components/user/UserAllGames";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const getServerSideProps = async ({query}) =>{
     const {id} = query;    
@@ -51,7 +53,9 @@ export default function Games({data,errorMessage}){
             <Header />
            
                 {isLoading ? (
-        <p>Loading...</p>
+                    <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box>
             ) : isThereError ? (
             <p>{errorMessage}</p>
             ) : isMobile ? (
@@ -68,8 +72,6 @@ export default function Games({data,errorMessage}){
                 </section>
                 </main>
         )}
-                    
-                
         </>
     )
 }

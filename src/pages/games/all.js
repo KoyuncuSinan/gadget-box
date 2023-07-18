@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from "react";
 import Header from "@/components/navbar/Header";
 import AllGames from "@/components/games/AllGames";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 
 export const getServerSideProps = async () => {
@@ -45,7 +47,9 @@ export default function GamesAll({data,errorMessage}){
         <main className="w-[90%] umd:w-[60%] mx-auto">
             <section>
             {isLoading ? (
-            <p>Loading...</p>
+              <Box sx={{ display: "flex"}} className="mt-10 mx-auto items-center justify-center text-white"> 
+          <CircularProgress />
+            </Box>
                 ) : isThereError ? (
                 <p>{errorMessage}</p>
                 ) : (

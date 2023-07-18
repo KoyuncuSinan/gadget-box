@@ -52,6 +52,8 @@ export default function FollowButton({ user }) {
       fetchUserId();
     }
     setMounted(true);
+    setIsLoading(false);
+
   }, [session, status]);
 
   const router = useRouter();
@@ -89,26 +91,22 @@ export default function FollowButton({ user }) {
 
   return (
     <div>
-      {mounted && (
-        <>
-          {state ? (
-            id === loggedInUserId ? (
-              <span></span>
-            ) : isFollowed ? (
-              <span>
-                <UnfollowButton />
-              </span>
-            ) : (
-              <button
-                onClick={handleClick}
-                className="bg-orange-700 text-white px-2 rounded-md"
-              >
-                Follow
-              </button>
-            )
-          ) : null}
-        </>
-      )}
-    </div>
+    {isLoading ? "Loading" : mounted && state && id !== loggedInUserId && (
+      <>
+        {isFollowed ? (
+          <span>
+            <UnfollowButton />
+          </span>
+        ) : (
+          <button
+            onClick={handleClick}
+            className="bg-orange-700 text-white px-2 rounded-md"
+          >
+            Follow
+          </button>
+        )}
+      </>
+    )}
+  </div>
   );
 }
