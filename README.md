@@ -1,11 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Gadget Box
+This is the GitHub repository for the Gadget Box web app. Gadget Box is a gaming-themed website where users can share game reviews, rate games, and connect with other gamers. The app utilizes the rawg.io API for game data and features a dynamic search bar, user profiles, and social functionalities.
 
-## Getting Started
+## Technologies Used
 
-First, run the development server:
+* HTML
+* CSS
+* JavaScript
+* React
+* Next.js
+* Cloudinary
+* Git
+* GitHub
+* TailwindCSS
+* Material UI
+* MongoDB 
+* MongoDB Atlas 
+* Formidable
+* Bcrypt 
+* Mongoose 
+* Babel 
+* Sharp
+* Responsive Design
+* Mobile-first approach
+* ESLint 
+* React-Select
 
-```bash
+## Documentation
+
+- Clone the repository:
+** git clone https://github.com/your-username/gadget-box.git
+
+- Navigate to the project directory:
+cd gadget-box
+
+- Install the dependencies: 
+npm install
+
+- Start the development server:
 npm run dev
+<<<<<<< HEAD
 # or
 yarn dev
 # or
@@ -36,3 +69,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+=======
+>>>>>>> 8ce0655a96e31b659fd6a7865b0dbc6cb3a3f03f
